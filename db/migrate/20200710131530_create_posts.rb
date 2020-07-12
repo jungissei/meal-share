@@ -4,7 +4,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :content
       t.text :image
-      t.references :user, index: true, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end

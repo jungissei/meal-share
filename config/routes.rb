@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :post_cats
+  resources :cats
   resources :posts
   devise_for :users
   root to: 'home#top'
