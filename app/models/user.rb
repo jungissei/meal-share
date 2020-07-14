@@ -18,4 +18,8 @@ class User < ApplicationRecord
     where(conditions).where(["username = :value OR email = :value", {value: login.strip.downcase}]).first
   end
 
+  def already_liked?(post)
+    Like.exists?(post_id: post.id)
+  end
+
 end
