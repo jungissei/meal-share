@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+  resources :users, only: [:show] do
+    resources :relationships, only: [:create, :destroy]
+  end
+
   root to: 'home#top'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
