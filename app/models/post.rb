@@ -9,4 +9,6 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   accepts_nested_attributes_for :likes, allow_destroy: true
 
+  has_many :comments, dependent: :destroy
+
 end

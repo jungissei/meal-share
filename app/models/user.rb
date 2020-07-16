@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
 
-
+  has_many :comments, dependent: :destroy
 
   # related login
   # Include default devise modules. Others available are:
