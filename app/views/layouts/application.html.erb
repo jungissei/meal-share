@@ -17,6 +17,12 @@
       <p><%= alert %></p>
     <% end %>
     <% if user_signed_in? %>
+      <p><%= link_to "通知", notifications_path %></p>
+      <% if unchecked_notifications.any? %>
+        <p>新しい通知あり</p>
+      <% else %>
+        <p>新しい通知なし</p>
+      <% end %>
       <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
     <% end %>
     <%= yield %>
