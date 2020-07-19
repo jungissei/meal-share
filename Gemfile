@@ -62,3 +62,5 @@ gem 'devise-i18n-views'
 
 gem 'carrierwave'
 gem 'fog'
+
+gem 'kaminari'
