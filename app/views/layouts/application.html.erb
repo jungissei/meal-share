@@ -1,30 +1,87 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
     <title>App</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ea5e772f5e.js" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if notice %>
-      <p><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p><%= alert %></p>
-    <% end %>
-    <% if user_signed_in? %>
-      <p><%= link_to "通知", notifications_path %></p>
-      <% if unchecked_notifications.any? %>
-        <p>新しい通知あり</p>
-      <% else %>
-        <p>新しい通知なし</p>
+    <header>
+      <div class="container">
+        <div class="container__break color_bg-primary">
+          <div class="header">
+            <div class="header__logo"><%= link_to "Meal Share", root_path %></div>
+            <% if user_signed_in? %>
+
+            <% else %>
+              <div class="header__signup">
+                <%= link_to new_user_registration_path do %>
+                  <i class="fas fa-user-plus"></i>
+                  <span>会員登録</span>
+                <% end %>
+              </div>
+              <div class="header__signin">
+                <%= link_to  new_user_session_path do %>
+                  <i class="fas fa-sign-in-alt"></i>
+                  <span>ログイン</span>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <% if current_page?(root_path) %>
+        <div class="container">
+          <div class="container__break img_bg-main-visual">
+            <div class="main-visual">
+              <span class="main-visual__logo">Meal Share</span>
+              <span class="main-visual__sub">美味しい食べ物をシェアしよう</span>
+            </div>
+          </div>
+        </div>
       <% end %>
-      <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
-    <% end %>
-    <%= yield %>
+    </header>
+    <main>
+
+      <% if notice %>
+        <p><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p><%= alert %></p>
+      <% end %>
+      <% if user_signed_in? %>
+        <p><%= link_to "通知", notifications_path %></p>
+        <% if unchecked_notifications.any? %>
+          <p>新しい通知あり</p>
+        <% else %>
+          <p>新しい通知なし</p>
+        <% end %>
+        <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="container__break color_bg-black">
+          <div class="footer">
+            <div class="footer-logo">
+              <%= link_to "Meal Share", root_path %>
+            </div>
+            <div class="footer-copyright">
+              ©2020 <%= link_to "Meal Share", root_path %> Allright Reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

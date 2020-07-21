@@ -1,0 +1,335 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ /*====================================================
+_comonn.scss
+*全体のscssファイルで使用する変数、@mixin定義
+
+
+
+
+*メディアクエリ・breakpoints
+*ホバー無効化
+*フォント
+*カラー・色
+*正三角形
+*アニメーション：スライドダウン
+*画像背景関連
+*ボタン共通
+*リストスタイルのアイコン部分がテキストの場合
+*scrollスタイル
+
+
+======================================================*/
+
+
+
+
+/*メディアクエリ・breakpoints
+------------------------------------------------------*/
+$breakpoints: (
+  'xs': 'screen and (min-width: 414px)',
+  'sm': 'screen and (min-width: 576px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 992px)',
+  'xl': 'screen and (min-width: 1200px)'
+) !default;
+
+
+@mixin mq($breakpoint: xs) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+      @content;
+  }
+}
+
+
+
+
+/*ホバー無効化
+------------------------------------------------------*/
+/*ホバー無効化*/
+@mixin no-hover{
+  &:hover{
+      text-decoration: none;
+  }
+}
+
+
+/*aタグブロック化*/
+@mixin tag_a_block {
+  a {
+      display: block;
+      @include no-hover;
+  }
+}
+
+
+
+
+
+
+/*カラー・色
+------------------------------------------------------*/
+/*テーマカラー*/
+$theme-color: (
+  "primary": #ffd200,
+  "secondary": #0B0074,
+  "tertiary": #F99F48,
+  "quaternary": #CCF3D9,
+  "black": #000,
+);
+
+@function theme-color($key) {
+  @return map-get($theme-color, $key);
+}
+
+
+@function theme-color_darken($key, $tone) {
+  @return darken(map-get($theme-color, $key), $tone);
+}
+
+
+@function theme-color_lighten($key, $tone) {
+  @return lighten(map-get($theme-color, $key), $tone);
+}
+
+
+@each $key, $color in $theme-color {
+  .color_bg-#{$key} {
+      background-color: $color;
+
+
+  }
+  .color_text-#{$key} {
+      color: $color;
+  }
+  $tone: 10;
+  @while $tone <=90 {
+      .color_bg-#{$key}-darken-#{$tone} {
+          background-color: darken($color, $tone);
+      }
+      .color_bg-#{$key}-lighten-#{$tone} {
+          background-color: lighten($color, $tone);
+      }
+      .color_text-#{$key}-darken-#{$tone} {
+          color: darken($color, $tone);
+      }
+      .color_text-#{$key}-lighten-#{$tone} {
+          color: lighten($color, $tone);
+      }
+      $tone: $tone + 5;
+  }
+}
+
+
+
+
+/*正三角形
+------------------------------------------------------*/
+@mixin trianglearrow($direction: right, $size: 12, $color: gray){
+
+
+  $set: left;
+
+
+  @if $direction == left{
+      $set: right;
+  } @else if $direction == top{
+      $set: bottom;
+  } @else if $direction == bottom{
+      $set: top;
+  } @else{
+      $set: left;
+  }
+  $size: round($size / 2);
+
+
+  width: 0;
+  height: 0;
+  border: $size + px solid transparent;
+  border-#{$set}-color: $color;
+}
+
+
+
+
+
+
+/*アニメーション：スライドダウン
+------------------------------------------------------*/
+@mixin slide_down_fixed {
+  @keyframes slide-down {
+      0% {top: -50px;}
+      1% {top: -25px;}
+      100% {top: 0px;}
+  }
+  @-moz-keyframes slide-down {
+      0% {top: -50px;}
+      1% {top: -25px;}
+      100% {top: 0px;}
+  }
+  @-webkit-keyframes slide-down {
+      0% {top: -50px;}
+      1% {top: -25px;}
+      100% {top: 0px;}
+  }
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .26);
+  position:fixed;
+  top:0;
+  z-index: 999999;
+  width: 100%;
+  animation-duration: 0.5s;
+  animation-name: slide-down;
+  -moz-animation-duration: 0.5s;
+  -moz-animation-name: slide-down;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-name: slide-down;
+}
+
+
+
+
+
+
+/*画像背景関連
+------------------------------------------------------*/
+/*背景画像を縦横一杯広げる*/
+@mixin bg-img_cover{
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:center;
+}
+
+
+/*scrollスタイル
+------------------------------------------------------*/
+@mixin scroll-ver {
+  overflow: auto;
+  overflow-y: auto;
+  padding: 1%;
+
+
+  //iosでスクロールバー表示させる
+  &::-webkit-scrollbar{
+      width: 10px;
+  }
+
+
+  &::-webkit-scrollbar-thumb{
+      background: #CECEBF;
+  }
+
+
+  &::-webkit-scrollbar-track-piece{
+      &:start,
+      &:end{
+          background-color: #fff;
+      }
+  }
+}
+
+
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-size: 16px;
+  line-height: 1.75;
+  letter-spacing: 1.5px;
+  font-feature-settings: "palt" 1;
+  font-kerning: auto;
+  margin: 0;
+  color: #333;
+}
+
+a{
+  color: #666;
+
+  &:hover{
+    background-color: transparent;
+    color: #666;
+  }
+}
+
+
+
+.header{
+  display: flex;
+  align-items: center;
+  font-size: 1.4em;
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .header__logo{
+    font-weight: 700;
+    margin-right:auto ;
+    padding: .25em;
+  }
+
+  .header__signup,
+  .header__signin{
+    text-align: center;
+    width: 58px;
+    padding: .25em;
+      i{
+        display: block;
+      }
+
+      span{
+        display: block;
+        font-size: .1em;
+      }
+  }
+
+}
+
+.footer{
+  padding: .5em;
+
+  .footer-logo{
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.4em;
+
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  .footer-copyright{
+    font-size: .7em;
+    text-align: center;
+    color: white;
+
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.container__break {
+  padding-right: calc(50vw - 50%);
+  padding-left: calc(50vw - 50%);
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
+}
+
+.img_bg-main-visual{
+  background-image: url(uploads/views/main-visual__bg.jpg);
+}
