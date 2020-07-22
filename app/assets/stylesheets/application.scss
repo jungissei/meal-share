@@ -14,28 +14,6 @@
  *= require_self
  */
 
- /*====================================================
-_comonn.scss
-*全体のscssファイルで使用する変数、@mixin定義
-
-
-
-
-*メディアクエリ・breakpoints
-*ホバー無効化
-*フォント
-*カラー・色
-*正三角形
-*アニメーション：スライドダウン
-*画像背景関連
-*ボタン共通
-*リストスタイルのアイコン部分がテキストの場合
-*scrollスタイル
-
-
-======================================================*/
-
-
 
 
 /*メディアクエリ・breakpoints
@@ -328,8 +306,4 @@ a{
   padding-left: calc(50vw - 50%);
   margin-right: calc(50% - 50vw);
   margin-left: calc(50% - 50vw);
-}
-
-.img_bg-main-visual{
-  background-image: url(uploads/views/main-visual__bg.jpg);
 }

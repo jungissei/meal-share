@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :comment_params, only: :create
   before_action :correct_user, only: :destroy
 
