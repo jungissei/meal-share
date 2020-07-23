@@ -146,6 +146,17 @@ img{
   margin-left: calc(50% - 50vw);
 }
 
+/*card
+------------------------------------------------------*/
+.card-img-top{
+  img{
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+}
+
+
 /*title
 ------------------------------------------------------*/
 .title-primary:not(.title-reset){
