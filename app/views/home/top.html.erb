@@ -1,2 +1,44 @@
-<h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<div class="container">
+  <h2 class="title-primary">Meal Share とは</h2>
+  <div class="row align-items-center">
+    <div class="col-12 col-md-6"><%= image_tag 'top-about.jpg' %></div>
+    <div class="col-12 col-md-6">
+      <p class="fs-md-1-2e">Meal Logsとは、食べ物をシェアするウェブサイトです。<br>みんなで美味しい食べ物をシェアしよう！</p>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h2 class="title-primary">Meal Share</h2>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
+    <% @posts.each do |post| %>
+      <div class="col">
+        <div class="card shadow-sm">
+          <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" role="img" focusable="false">
+            <rect width="100%" height="100%" fill="#55595c"></rect>
+          </svg>
+
+          <div class="card-body">
+            <div class="card-title">
+              <%= post.title %>
+            </div>
+            <div class="text-right">
+              <div class="btn-group">
+                <%= link_to '詳しく見る', post, class: 'btn btn-sm btn-outline-secondary' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+
+
+
+
+
+
+
+
+</div>

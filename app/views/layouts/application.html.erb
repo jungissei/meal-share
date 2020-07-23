@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta name="format-detection" content="telephone=no">
-    <title>App</title>
+    <title>Meal Share</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
@@ -21,15 +21,29 @@
           <div class="header">
             <div class="header__logo"><%= link_to "Meal Share", root_path %></div>
             <% if user_signed_in? %>
-
+              <div class="header__icon">
+                <%= link_to  notifications_path do %>
+                  <i class="fas fa-bell"></i>
+                  <span>通知</span>
+                  <% if unchecked_notifications.any? %>
+                    <div class="header__notifications-new"></div>
+                  <% end %>
+                <% end %>
+              </div>
+              <div class="header__icon">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>ログアウト</span>
+                <% end %>
+              </div>
             <% else %>
-              <div class="header__signup">
+              <div class="header__icon">
                 <%= link_to new_user_registration_path do %>
                   <i class="fas fa-user-plus"></i>
                   <span>会員登録</span>
                 <% end %>
               </div>
-              <div class="header__signin">
+              <div class="header__icon">
                 <%= link_to  new_user_session_path do %>
                   <i class="fas fa-sign-in-alt"></i>
                   <span>ログイン</span>
@@ -39,6 +53,23 @@
           </div>
         </div>
       </div>
+      <% if notice %>
+        <div class="alert alert-primary alert-dismissible fade show alert-position container" role="alert">
+          <%= notice %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger alert-dismissible fade show alert-position container" role="alert">
+          <%= alert %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+
       <% if current_page?(root_path) %>
         <div class="container">
           <div class="container__break main-visual">
@@ -52,22 +83,8 @@
     </header>
     <main>
 
-      <% if notice %>
-        <p><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p><%= alert %></p>
-      <% end %>
-      <% if user_signed_in? %>
-        <p><%= link_to "通知", notifications_path %></p>
-        <% if unchecked_notifications.any? %>
-          <p>新しい通知あり</p>
-        <% else %>
-          <p>新しい通知なし</p>
-        <% end %>
-        <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
-      <% end %>
-      <%= yield %>
+    <%= yield %>
+
     </main>
     <footer>
       <div class="container">

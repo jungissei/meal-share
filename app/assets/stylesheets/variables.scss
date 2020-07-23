@@ -1,0 +1,99 @@
+/*メディアクエリ・breakpoints
+------------------------------------------------------*/
+$breakpoints: (
+  'xs': 'screen and (min-width: 414px)',
+  'sm': 'screen and (min-width: 576px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 992px)',
+  'xl': 'screen and (min-width: 1200px)'
+) !default;
+
+
+@mixin mq($breakpoint: xs) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+      @content;
+  }
+}
+
+
+/*カラー・色
+------------------------------------------------------*/
+/*テーマカラー*/
+$theme-color: (
+  "primary": #ffd200,
+  "secondary": #0B0074,
+  "tertiary": #F99F48,
+  "quaternary": #CCF3D9,
+  "black": #000,
+);
+
+@function theme-color($key) {
+  @return map-get($theme-color, $key);
+}
+
+
+@function theme-color_darken($key, $tone) {
+  @return darken(map-get($theme-color, $key), $tone);
+}
+
+
+@function theme-color_lighten($key, $tone) {
+  @return lighten(map-get($theme-color, $key), $tone);
+}
+
+
+@each $key, $color in $theme-color {
+  .color_bg-#{$key} {
+      background-color: $color;
+
+
+  }
+  .color_text-#{$key} {
+      color: $color;
+  }
+  $tone: 10;
+  @while $tone <=90 {
+      .color_bg-#{$key}-darken-#{$tone} {
+          background-color: darken($color, $tone);
+      }
+      .color_bg-#{$key}-lighten-#{$tone} {
+          background-color: lighten($color, $tone);
+      }
+      .color_text-#{$key}-darken-#{$tone} {
+          color: darken($color, $tone);
+      }
+      .color_text-#{$key}-lighten-#{$tone} {
+          color: lighten($color, $tone);
+      }
+      $tone: $tone + 5;
+  }
+}
+
+
+
+
+/*正三角形
+------------------------------------------------------*/
+@mixin trianglearrow($direction: right, $size: 12, $color: gray){
+
+
+  $set: left;
+
+
+  @if $direction == left{
+      $set: right;
+  } @else if $direction == top{
+      $set: bottom;
+  } @else if $direction == bottom{
+      $set: top;
+  } @else{
+      $set: left;
+  }
+  $size: round($size / 2);
+
+
+  width: 0;
+  height: 0;
+  border: $size + px solid transparent;
+  border-#{$set}-color: $color;
+}
