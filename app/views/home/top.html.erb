@@ -21,8 +21,16 @@
               <%= image_tag post.image.to_s %>
             <% end %>
           </div>
-
           <div class="card-body">
+            <div class="card-cats">
+              <% post.cat_ids.each do |cat_id| %>
+                <% @cats.each do |cat| %>
+                  <% if cat_id == cat.id %>
+                    <span class="mr-3"><%= cat.name %><span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
             <div class="card-title">
               <%= post.title %>
             </div>

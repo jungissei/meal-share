@@ -16,6 +16,17 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
+        <td>
+          【カテゴリ】：
+          <% post.cat_ids.each do |cat_id| %>
+            <% @cats.each do |cat| %>
+              <% if cat_id == cat.id %>
+                <span class="ml-3"><%= cat.name %><span>
+              <% end %>
+            <% end %>
+          <% end %>
+
+        </td>
         <td><%= image_tag post.image.to_s %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
