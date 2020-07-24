@@ -212,3 +212,17 @@ img{
 		}
 	}
 }
+
+
+/*button
+------------------------------------------------------*/
+.btn-primary{
+  background-color: theme-color('primary');
+  color: black !important;
+  border: 1px solid theme-color('primary');
+
+  &:hover{
+    background-color: rgba(theme-color('primary'), .7);
+    border: 1px solid theme-color('primary');
+  }
+}

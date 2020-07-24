@@ -1,0 +1,30 @@
+<div class="col">
+  <div class="card shadow-sm">
+    <div class="bd-placeholder-img card-img-top">
+      <% if post.image.to_s.empty? %>
+        <%= image_tag 'nophoto.jpg' %>
+      <% else %>
+        <%= image_tag post.image.to_s %>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <div class="card-cats">
+        <% post.cat_ids.each do |cat_id| %>
+          <% @cats.each do |cat| %>
+            <% if cat_id == cat.id %>
+              <span class="mr-3"><%= cat.name %><span>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="card-title">
+        <%= post.title %>
+      </div>
+      <div class="text-right">
+        <div class="btn-group">
+          <%= link_to '詳しく見る', post, class: 'btn btn-sm btn-outline-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
