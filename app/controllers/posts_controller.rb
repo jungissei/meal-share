@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_ranks, only: [:show, :index]
 
   # GET /posts
   # GET /posts.json
@@ -82,5 +83,10 @@ class PostsController < ApplicationController
         :image,
         {:cat_ids => []}
       )
+    end
+
+
+    def set_ranks
+      @rank_posts = Like.create_all_ranks
     end
 end

@@ -1,0 +1,19 @@
+<h2 class="title-primary">Like Ranking</h2>
+<% @rank_posts.each.with_index(1) do |post, i| %>
+  <%= link_to post, class: 'simple' do %>
+    <div class="simple__left">
+      <div class="simple__thumb">
+        <% if post.image.to_s.empty? %>
+          <%= image_tag 'nophoto.jpg' %>
+        <% else %>
+          <%= image_tag post.image.to_s %>
+        <% end %>
+      </div>
+      <div class="simple__rank-num simple__rank-num-<%= i %>"><%= i %></div>
+    </div>
+    <div class="simple__right">
+      <div class="simple__title"><%= post.title %></div>
+      <div class="simple__like-num"><%= post.likes.count %>Likes</div>
+    </div>
+  <% end %>
+<% end %>

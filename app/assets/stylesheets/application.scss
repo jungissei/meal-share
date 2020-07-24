@@ -166,6 +166,84 @@ img{
   overflow: hidden;
 }
 
+/*simple
+------------------------------------------------------*/
+.simple{
+  display: flex;
+  text-decoration: none;
+  color: black !important;
+  transition:background-color .3s linear;
+
+  &:not(:last-of-type){
+    border-bottom: 1px solid #ccc;
+  }
+
+  &:hover{
+    background-color: #eee;
+  }
+
+  > div{
+    padding: .5em;
+  }
+
+  .simple__left{
+    width: 30%;
+    position: relative;
+  }
+
+  .simple__right{
+    width: 70%;
+  }
+
+  .simple__thumb{
+    img{
+      width: 100%;
+      height: 55px;
+      object-fit: cover;
+
+      @include mq('md'){
+        height: 142px;
+      }
+
+      @include mq('lg'){
+        height: 80px;
+      }
+    }
+  }
+
+  .simple__rank-num{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    width: 28px;
+    text-align: center;
+
+    &.simple__rank-num-1{
+      background-color:#F5D100;
+    }
+    &.simple__rank-num-2{
+      background-color:#BDC3C9;
+    }
+    &.simple__rank-num-3{
+      background-color:#9F7A46;
+    }
+  }
+
+  .simple__title{
+    font-size: .9em;
+    height: 3.6em;
+    overflow: hidden;
+  }
+
+  .simple__like-num{
+    font-size: .8em;
+    color: #666;
+
+  }
+}
+
+
 /*pagenation
 ------------------------------------------------------*/
 .page-item.active .page-link {
