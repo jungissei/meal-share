@@ -166,6 +166,14 @@ img{
   overflow: hidden;
 }
 
+/*pagenation
+------------------------------------------------------*/
+.page-item.active .page-link {
+  color: black;
+  background-color: theme-color('primary');
+  border-color: theme-color('primary');
+}
+
 
 /*title
 ------------------------------------------------------*/
