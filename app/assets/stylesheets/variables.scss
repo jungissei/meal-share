@@ -25,6 +25,7 @@ $theme-color: (
   "tertiary": #F99F48,
   "quaternary": #CCF3D9,
   "black": #000,
+  "l-gray": #eee,
 );
 
 @function theme-color($key) {

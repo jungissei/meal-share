@@ -1,0 +1,8 @@
+<div class="user-info">
+  <%= link_to user_path(user), class:'user-info__image' do %>
+    <%= image_tag 'nophoto.jpg' %>
+  <% end %>
+  <%= link_to user_path(user), class:'user-info__name' do %>
+    @<%= user.username %>
+  <% end %>
+</div>

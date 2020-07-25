@@ -1,20 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-lg-8">
-      <div class="post-user">
-        <%= link_to user_path(@post.user), class:'post-user__image' do %>
-          <%= image_tag 'nophoto.jpg' %>
-        <% end %>
-        <%= link_to user_path(@post.user), class:'post-user__name' do %>
-          @<%= @post.user.username %>
-        <% end %>
-        <div class="post-user__date"><%= l @post.created_at, format: :short %>に投稿</div>
+      <div class="d-flex align-items-center">
+        <%= render 'users/user-info', user:@post.user %>
+        <small class="color-text-l-gray"><%= l @post.created_at, format: :short %>に投稿</small>
         <% if current_user == @post.user %>
           <%= link_to  edit_post_path(@post), class:'ml-auto text-decoration-none' do %>
             <small><i class="far fa-edit"></i>編集する</small>
           <% end %>
         <% end %>
       </div>
+
 
       <h1 class="title-primary mt-0"><%= @post.title %></h1>
 
@@ -34,13 +30,8 @@
 
 
       <hr>
-      <div class="post-user">
-        <%= link_to user_path(@post.user), class:'post-user__image' do %>
-          <%= image_tag 'nophoto.jpg' %>
-        <% end %>
-        <%= link_to user_path(@post.user), class:'post-user__name' do %>
-          @<%= @post.user.username %>
-        <% end %>
+      <div class="d-flex align-items-center">
+        <%= render 'users/user-info', user:@post.user %>
         <%= render 'relationships/follow_button', user: @post.user %>
       </div>
 
@@ -49,23 +40,35 @@
         <%= link_to '戻る', posts_path, class:'btn btn-light m-auto d-block w-50 border' %>
       </div>
 
+      <h2 class="title-primary"><i class="fas fa-comments mr-2"></i>コメント</h2>
+      <div>
+        <% @comments.each do |comment| %>
+          <div class="d-flex align-items-center">
+            <%= render 'users/user-info', user:comment.user %>
+            <small class="color-text-l-gray ml-auto"><%= l comment.created_at %>に投稿</small>
+          </div>
+          <div><%= comment.content %></div>
+          <% if current_user == comment.user %>
+            <small class="text-right d-block"><%= link_to '削除', post_comment_path(@post, comment), method: :delete %></small>
+          <% end %>
+          <hr>
+        <% end %>
+      </div>
 
-<%= form_with model: [@post, @comment], local: true do |form| %>
-  <div class = 'form-group'>
-    <%= form.text_area :content %>
-  </div>
-
-  <%= form.submit 'コメントする' %>
-<% end %>
-<div>
-  <% @comments.each do |comment| %>
-    <div><%= comment.user.username %></div>
-    <div><%= comment.content %></div>
-    <div><%= link_to '削除', post_comment_path(@post, comment), method: :delete %></div>
-  <% end %>
-</div>
-
-
+      <div class="p-3 p-md-5 mb-5 color_bg-l-gray">
+        <div class="d-flex align-items-center">
+          <%= render 'users/user-info', user:current_user %>
+          <span class="font-weight-bold ml-3">投稿する</span>
+        </div>
+        <%= form_with model: [@post, @comment], local: true do |form| %>
+          <div class = 'form-group'>
+            <%= form.text_area :content, class:'form-control mb-3' %>
+          </div>
+          <div class = 'text-right'>
+            <%= form.submit 'コメントする', class:'btn btn-primary' %>
+          </div>
+        <% end %>
+      </div>
 
 
 
