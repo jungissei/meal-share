@@ -258,7 +258,7 @@ img{
 .title-primary:not(.title-reset){
   font-size: 1.4em;
   font-weight: 700;
-  margin-top: 1em;
+  margin: 1em 0;
 
   @include mq('md'){
     font-size: 2.2em;

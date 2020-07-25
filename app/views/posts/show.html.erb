@@ -10,7 +10,11 @@
         <% end %>
         <div class="post-user__date"><%= l @post.created_at, format: :short %>に投稿</div>
       </div>
-      <h1 class="title-primary"><%= @post.title %></h1>
+
+      <h1 class="title-primary mt-0"><%= @post.title %></h1>
+
+      <%= render 'cats/post-cats', post:@post %>
+
       <div><%= image_tag @post.image.to_s %></div>
       <div>
         <strong>Content:</strong>

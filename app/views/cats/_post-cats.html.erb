@@ -1,0 +1,9 @@
+<div class="post-cats">
+  <% post.cat_ids.each do |cat_id| %>
+    <% @cats.each do |cat| %>
+      <% if cat_id == cat.id %>
+        <span class="post-cats__name"><%= cat.name %><span>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
