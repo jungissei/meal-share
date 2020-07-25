@@ -3,3 +3,25 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 @import "./variables";
+
+.user-follow{
+  margin: 1em 0;
+
+  a{
+    text-decoration: none;
+    padding: .25em 1em;
+    font-size: 1.1em;
+    font-weight: 700;
+  }
+
+  .user-follow__enable{
+    border: 2px solid #F5D100;
+    color: #F5D100;
+  }
+
+  .user-follow__cancel{
+    border: 2px solid #F5D100;
+    background-color: #F5D100;
+    color: white;
+  }
+}

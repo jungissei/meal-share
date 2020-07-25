@@ -18,7 +18,7 @@
       <div><%= image_tag @post.image.to_s %></div>
       <div><%= @post.content %></div>
 
-      <div class="post-like">
+      <div class="post-like pb-4">
         <% if current_user.already_liked?(@post) %>
           <%= link_to 'Like', post_like_path(@post), method: :delete, class:'post-like__cancel' %>
         <% else %>
@@ -28,6 +28,16 @@
       </div>
 
 
+      <hr>
+      <div class="post-user">
+        <%= link_to user_path(@post.user), class:'post-user__image' do %>
+          <%= image_tag 'nophoto.jpg' %>
+        <% end %>
+        <%= link_to user_path(@post.user), class:'post-user__name' do %>
+          @<%= @post.user.username %>
+        <% end %>
+        <%= render 'relationships/follow_button', user: @post.user %>
+      </div>
 
 
 <%= form_with model: [@post, @comment], local: true do |form| %>
