@@ -16,19 +16,16 @@
       <%= render 'cats/post-cats', post:@post %>
 
       <div><%= image_tag @post.image.to_s %></div>
-      <div>
-        <strong>Content:</strong>
-        <%= @post.content %>
-      </div>
+      <div><%= @post.content %></div>
 
-<h3><%= @post.user.email %></h3>
-<h3><%= @post.content %></h3>
-<h3>いいね件数: </h3>
-<% if current_user.already_liked?(@post) %>
-  <%= button_to 'いいねを取り消す', post_like_path(@post), method: :delete %>
-<% else %>
-  <%= button_to 'いいね', post_likes_path(@post) %>
-<% end %>
+      <div class="post-like">
+        <% if current_user.already_liked?(@post) %>
+          <%= link_to 'Like', post_like_path(@post), method: :delete, class:'post-like__cancel' %>
+        <% else %>
+          <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
+        <% end %>
+        <div class="post-like__num"><%= @post.likes.count %></div>
+      </div>
 
 
 
