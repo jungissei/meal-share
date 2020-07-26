@@ -20,3 +20,13 @@
     font-size: .8em;
   }
 }
+
+.scroll{
+  position: relative;
+  height: 250px;
+  margin-top: .5rem;
+  overflow: auto;
+  border: 1px solid #999;
+  padding: 1rem;
+  margin-top: 1rem;
+}

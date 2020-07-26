@@ -1,38 +1,69 @@
 <%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  <div class="row">
+      <% if post.errors.any? %>
+        <div class="col-12">
+          <div id="error_explanation">
+            <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+            <ul>
+              <% post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <div>
+      <% end %>
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+    <div class="col-12 col-lg-10">
+      <div class="field">
+        <%= form.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-file mb-3">
+        <%= form.file_field :image, class:'form-file-input' %>
+        <label class="form-file-label" for="customFile">
+          <span class="form-file-text">画像を選択</span>
+          <span class="form-file-button">選択</span>
+        </label>
+      </div>
+
+      <div class="field">
+        <%= form.text_area :content, class: 'form-control', rows:10 %>
+      </div>
+
+
     </div>
-  <% end %>
+    <div class="col-12 col-lg-2">
+      <div class="mb-2 text-right">
+        <%= link_to '投稿を確認', @post, class:'btn btn-secondary text-white w-100' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
+      <div class="text-right">
+        <%= form.submit('更新', class:'btn btn-dark w-100') %>
+      </div>
 
-  <div class="field">
-    <%= form.label :cat_id %>
-    <div><%= form.collection_check_boxes(:cat_ids, Cat.where(user_id: current_user.id), :id, :name, include_hidden: true) %></div>
-    <div class="text-right"><%= link_to("＞＞カテゴリの新規追加", "/cats/new") %></div>
-  </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
+      <div class="scroll">
+        <h2 class="font-weight-bold border-bottom mb-3">カテゴリ</h2>
+        <div class="cat-group">
+          <%= form.collection_check_boxes(:cat_ids, Cat.where(user_id: current_user.id), :id, :name, include_hidden: true) do |b| %>
+            <div class="form-check">
+              <%= b.check_box(class:'form-check-input') %>
+              <%= b.label(class:'form-check-label') do %>
+                <%= b.text %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="text-right">
+          <small><%= link_to("新規追加", "/cats/new") %></small>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
+
+
+
+    </div>
+
   </div>
 <% end %>

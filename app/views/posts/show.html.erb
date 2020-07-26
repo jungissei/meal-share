@@ -45,7 +45,7 @@
         <% @comments.each do |comment| %>
           <div class="d-flex align-items-center">
             <%= render 'users/user-info', user:comment.user %>
-            <small class="color-text-l-gray ml-auto"><%= l comment.created_at %>に投稿</small>
+            <small class="color-text-l-gray ml-auto"><%= l comment.created_at %></small>
           </div>
           <div><%= comment.content %></div>
           <% if current_user == comment.user %>
