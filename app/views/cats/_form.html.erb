@@ -12,11 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class:'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="text-center">
+    <%= form.submit('更新', class:'btn btn-dark w-100') %>
   </div>
+
 <% end %>

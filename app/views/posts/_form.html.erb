@@ -33,9 +33,11 @@
 
     </div>
     <div class="col-12 col-lg-2">
-      <div class="mb-2 text-right">
-        <%= link_to '投稿を確認', @post, class:'btn btn-secondary text-white w-100' %>
-      </div>
+      <% if !current_page?(new_post_path) %>
+        <div class="mb-2 text-right">
+          <%= link_to '投稿を確認', @post, class:'btn btn-secondary text-white w-100' %>
+        </div>
+      <% end %>
 
       <div class="text-right">
         <%= form.submit('更新', class:'btn btn-dark w-100') %>
