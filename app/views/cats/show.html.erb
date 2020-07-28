@@ -1,14 +1,17 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @cat.name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @cat.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_cat_path(@cat) %> |
-<%= link_to 'Back', cats_path %>
+<div class="container">
+    <div class="row">
+      <div class="col-12 col-lg-6 m-auto">
+        <h1 class="title-primary"><%= @cat.name %></h1>
+        <%= link_to '編集', edit_cat_path(@cat), class:'btn btn-dark w-100 mb-3 text-white' %>
+        <%= link_to '一覧へ戻る', cats_path, class:'btn btn-secondary w-100 mb-3 text-white' %>
+        <h2 class="title-secondary">記事一覧</h2>
+        <div class="mb-3">
+          <% @post_cats.each do |post_cat| %>
+            <% post = Post.find(post_cat.post_id) %>
+            <%= render 'posts/simple', post:post %>
+          <% end %>
+        </div>
+        <%= paginate @post_cats %>
+      </div>
+    </div>
+</div>

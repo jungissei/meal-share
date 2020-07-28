@@ -5,12 +5,13 @@ class CatsController < ApplicationController
   # GET /cats
   # GET /cats.json
   def index
-    @cats = Cat.all
+    @cats = Cat.page(params[:page])
   end
 
   # GET /cats/1
   # GET /cats/1.json
   def show
+    @post_cats = PostCat.where(cat_id:@cat.id).page(params[:page])
   end
 
   # GET /cats/new

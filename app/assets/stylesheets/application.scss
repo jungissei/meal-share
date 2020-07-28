@@ -265,6 +265,17 @@ img{
   }
 }
 
+.title-secondary:not(.title-reset){
+  font-size: 1.2em;
+  font-weight: 700;
+  border-bottom: 1px #333 solid;
+  margin: 1em 0;
+
+  @include mq('md'){
+    font-size: 1.8em;
+  }
+}
+
 /*font-size
 ------------------------------------------------------*/
 @each $key, $breakpoint in $breakpoints {
