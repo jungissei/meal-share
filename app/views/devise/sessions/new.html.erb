@@ -1,26 +1,27 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :login %><br />
-    <%= f.text_field :login %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
+<div class="container">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:'form-signin'}) do |f| %>
+    <h1 class="title-primary">ログイン</h1>
     <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <%= f.label :login, class:'sr-only' %>
+      <%= f.text_field :login, class:'form-control', placeholder:'Eメールアドレス or ユーザーID' %>
+      <%= f.label :password, class:'sr-only' %>
+      <%= f.password_field :password, autocomplete: 'current-password', class:'form-control', placeholder:'パスワード' %>
     </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="checkbox mb-3">
+        <%= f.label :remember_me do %>
+          <%= f.check_box :remember_me %>
+          ログインを記録
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit 'ログイン', class:'btn btn-lg btn-primary btn-block' %>
+    </div>
+
+    <div class="mt-5"><%= render 'devise/shared/links' %></div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
