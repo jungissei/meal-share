@@ -37,6 +37,12 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-right">
                   <li>
+                    <%= link_to user_path(current_user), class:'dropdown-item' do %>
+                        <i class="fas fa-user"></i>
+                        <span>マイページ</span>
+                    <% end %>
+                  </li>
+                  <li>
                     <%= link_to new_post_path, class:'dropdown-item' do %>
                         <i class="fas fa-plus-circle"></i>
                         <span>新規投稿</span>
