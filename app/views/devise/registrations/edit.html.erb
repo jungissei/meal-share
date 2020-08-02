@@ -5,6 +5,14 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
+        <div class="form-file mb-3">
+          <%= f.file_field :image, class:'form-file-input' %>
+          <label class="form-file-label" for="customFile">
+            <span class="form-file-text">画像を選択</span>
+            <span class="form-file-button">選択</span>
+          </label>
+        </div>
+
         <div class="field">
           <%= f.label :username, class:'sr-only' %>
           <%= f.text_field :username, class:'form-control', placeholder:'ユーザーID' %>

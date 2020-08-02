@@ -18,12 +18,13 @@
         <%= form.text_field :title, class: 'form-control' %>
       </div>
 
-      <div class="form-file mb-3">
-        <%= form.file_field :image, class:'form-file-input' %>
-        <label class="form-file-label" for="customFile">
+      <div class="form-file custom-file mb-3">
+        <%= form.file_field :image, class:'form-file-input custom-file-input' %>
+        <%= form.hidden_field :image_cache %>
+        <%= form.label :image, class:'form-file-label custom-file-label' do %>
           <span class="form-file-text">画像を選択</span>
           <span class="form-file-button">選択</span>
-        </label>
+        <% end %>
       </div>
 
       <div class="field">

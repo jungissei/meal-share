@@ -15,3 +15,32 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+$(document).ready(function () {
+  bsCustomFileInput.init()
+})
+
+$(function() {
+  $('input[type=file]').after('<span></span>');
+
+  // アップロードするファイルを選択
+  $('input[type=file]').change(function() {
+    let file = $(this).prop('files')[0];
+
+    // 画像以外は処理を停止
+    if (! file.type.match('image.*')) {
+      // クリア
+      $(this).val('');
+      $('span').html('');
+      return;
+    }
+
+    // 画像表示
+    let reader = new FileReader();
+    reader.onload = function() {
+      let img_src = $('<img>').attr('src', reader.result);
+      $('span').html(img_src);
+    }
+    reader.readAsDataURL(file);
+  });
+});
