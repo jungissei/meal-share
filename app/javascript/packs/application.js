@@ -21,26 +21,15 @@ $(document).ready(function () {
 })
 
 $(function() {
-  $('input[type=file]').after('<span></span>');
+  let FileElem = $('input[type=file]');
+  let HiddenElem = FileElem.next($('input[type=hidden]'));
+  let FormFileText = HiddenElem.next().children($('.form-file-text'));
 
-  // アップロードするファイルを選択
-  $('input[type=file]').change(function() {
-    let file = $(this).prop('files')[0];
+  if(HiddenElem.attr('value') !== undefined){
+    console.log('test');
+    let HiddenElemImgNameObj = HiddenElem.attr('value').split('/');
+    let HiddenImgName = HiddenElemImgNameObj[HiddenElemImgNameObj.length - 1];
+    FormFileText.text(HiddenImgName);
+  }
 
-    // 画像以外は処理を停止
-    if (! file.type.match('image.*')) {
-      // クリア
-      $(this).val('');
-      $('span').html('');
-      return;
-    }
-
-    // 画像表示
-    let reader = new FileReader();
-    reader.onload = function() {
-      let img_src = $('<img>').attr('src', reader.result);
-      $('span').html(img_src);
-    }
-    reader.readAsDataURL(file);
-  });
 });
