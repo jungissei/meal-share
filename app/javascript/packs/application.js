@@ -16,20 +16,3 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-$(document).ready(function () {
-  bsCustomFileInput.init()
-})
-
-$(function() {
-  let FileElem = $('input[type=file]');
-  let HiddenElem = FileElem.next($('input[type=hidden]'));
-  let FormFileText = HiddenElem.next().children($('.form-file-text'));
-
-  if(HiddenElem.attr('value') !== undefined){
-    console.log('test');
-    let HiddenElemImgNameObj = HiddenElem.attr('value').split('/');
-    let HiddenImgName = HiddenElemImgNameObj[HiddenElemImgNameObj.length - 1];
-    FormFileText.text(HiddenImgName);
-  }
-
-});

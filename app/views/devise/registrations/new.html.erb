@@ -13,6 +13,19 @@
       <%= f.email_field :email, autofocus: true, autocomplete: 'email', class:'form-control', placeholder:'メールアドレス' %>
     </div>
 
+    <div class="form-file custom-file mb-3">
+      <%= f.file_field :image, class:'form-file-input custom-file-input' %>
+      <%= f.hidden_field :image_cache %>
+      <%= f.label :image, class:'form-file-label custom-file-label' do %>
+        <span class="form-file-text">画像を選択</span>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :name, class:'sr-only' %>
+      <%= f.text_field :name, class:'form-control', placeholder:'ハンドルネーム' %>
+    </div>
+
     <div class="field">
       <%= f.label :password, class:'sr-only' %>
       <% if @minimum_password_length %>

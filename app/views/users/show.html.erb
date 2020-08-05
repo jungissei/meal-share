@@ -1,9 +1,34 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-6 m-auto">
-      <h1 class="title-primary"><%= @user.username %></h1>
-
-      <%= render 'relationships/follow_button', user: @user %>
+    <div class="col-12 col-lg-3">
+      <div class="user-show">
+        <div class="user-show__image">
+          <% if @user.image? %>
+            <%= image_tag @user.image.to_s %>
+          <% else %>
+            <%= image_tag 'nophoto.jpg' %>
+          <% end %>
+        </div>
+        <div class="user-show__name"><%= @user.name %></div>
+        <div class="user-show__username">@<%= @user.username %></div>
+        <div class="user-show__d-flex mt-3">
+          <div class="user-show__posts">
+            <div class="user-show__count"><%= @user.posts.count %></div>
+            <div class="user-show__count-name">投稿数</div>
+          </div>
+          <div class="user-show__follow">
+            <div class="user-show__count"><%= @user.followings.count %></div>
+            <div class="user-show__count-name">フォロー</div>
+          </div>
+          <div class="user-show__folloer">
+            <div class="user-show__count"><%= @user.followers.count %></div>
+            <div class="user-show__count-name">フォロワー</div>
+          </div>
+        </div>
+        <%= render 'relationships/follow_button', user: @user %>
+      </div>
+    </div>
+    <div class="col-12 col-lg-9 m-auto">
     </div>
   </div>
 </div>

@@ -13,6 +13,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
     <script src="https://kit.fontawesome.com/ea5e772f5e.js" crossorigin="anonymous"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript">
+      $(document).on('turbolinks:load', function(){
+        bsCustomFileInput.init();
+
+        let FileElem = $('input[type=file]');
+        let HiddenElem = FileElem.next($('input[type=hidden]'));
+        let FormFileText = HiddenElem.next().children($('.form-file-text'));
+
+        if(HiddenElem.attr('value') !== undefined){
+          let HiddenElemImgNameObj = HiddenElem.attr('value').split('/');
+          let HiddenImgName = HiddenElemImgNameObj[HiddenElemImgNameObj.length - 1];
+          FormFileText.text(HiddenImgName);
+        }
+
+      });
+
+    </script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -48,6 +65,12 @@
                     <%= link_to new_post_path, class:'dropdown-item' do %>
                         <i class="fas fa-plus-circle"></i>
                         <span>新規投稿</span>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to edit_user_registration_path, class:'dropdown-item' do %>
+                        <i class="fas fa-user-edit"></i>
+                        <span>ユーザー情報編集</span>
                     <% end %>
                   </li>
                   <li>

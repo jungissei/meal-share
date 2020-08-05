@@ -15,9 +15,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    @user.image.cache! unless @user.image.blank?
+    # super
+  end
 
   # PUT /resource
   # def update
