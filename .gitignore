@@ -32,4 +32,4 @@ yarn-debug.log*
 
 .env
 
-/uploads
+/public/uploads
