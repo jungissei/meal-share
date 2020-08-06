@@ -26,7 +26,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    @post.image.cache! unless @post.image.blank?
+    if @post.user == current_user
+      @post.image.cache! unless @post.image.blank?
+    else
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   # POST /posts

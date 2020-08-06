@@ -21,6 +21,9 @@ class CatsController < ApplicationController
 
   # GET /cats/1/edit
   def edit
+    if @cat.user != current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   # POST /cats
