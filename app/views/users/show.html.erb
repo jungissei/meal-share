@@ -25,7 +25,9 @@
             <div class="user-show__count-name">フォロワー</div>
           </div>
         </div>
-        <%= render 'relationships/follow_button', user: @user %>
+        <% if user_signed_in? %>
+          <%= render 'relationships/follow_button', user: @user %>
+        <% end %>
       </div>
     </div>
     <div class="col-12 col-lg-9 m-auto">

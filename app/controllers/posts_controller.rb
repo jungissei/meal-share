@@ -1,8 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_ranks, only: [:show, :index]
-  before_action :set_cats, only: [:show, :index]
 
   # GET /posts
   # GET /posts.json
@@ -92,9 +91,5 @@ class PostsController < ApplicationController
 
     def set_ranks
       @rank_posts = Like.create_all_ranks
-    end
-
-    def set_cats
-      @cats = Cat.where(user_id: current_user.id)
     end
 end

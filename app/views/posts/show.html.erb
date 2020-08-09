@@ -19,22 +19,25 @@
       <div><%= image_tag @post.image.to_s %></div>
       <div><%= @post.content %></div>
 
-      <div class="post-like pb-4">
-        <% if current_user.already_liked?(@post) %>
-          <%= link_to 'Like', post_like_path(@post), method: :delete, class:'post-like__cancel' %>
-        <% else %>
-          <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
-        <% end %>
-        <div class="post-like__num"><%= @post.likes.count %></div>
-      </div>
+      <% if user_signed_in? %>
+        <div class="post-like pb-4">
+          <% if current_user.already_liked?(@post) %>
+            <%= link_to 'Like', post_like_path(@post), method: :delete, class:'post-like__cancel' %>
+          <% else %>
+            <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
+          <% end %>
+          <div class="post-like__num"><%= @post.likes.count %></div>
+        </div>
+      <% end %>
 
 
-      <hr>
-      <div class="d-flex align-items-center">
-        <%= render 'users/user-info', user:@post.user %>
-        <%= render 'relationships/follow_button', user: @post.user %>
-      </div>
-
+      <% if user_signed_in? %>
+        <hr>
+        <div class="d-flex align-items-center">
+          <%= render 'users/user-info', user:@post.user %>
+          <%= render 'relationships/follow_button', user: @post.user %>
+        </div>
+      <% end %>
 
       <div class="mb-5 mt-5">
         <%= link_to '戻る', posts_path, class:'btn btn-light m-auto d-block w-50 border' %>
@@ -55,20 +58,22 @@
         <% end %>
       </div>
 
-      <div class="p-3 p-md-5 mb-5 color_bg-l-gray">
-        <div class="d-flex align-items-center">
-          <%= render 'users/user-info', user:current_user %>
-          <span class="font-weight-bold ml-3">投稿する</span>
+      <% if user_signed_in? %>
+        <div class="p-3 p-md-5 mb-5 color_bg-l-gray">
+          <div class="d-flex align-items-center">
+            <%= render 'users/user-info', user:current_user %>
+            <span class="font-weight-bold ml-3">投稿する</span>
+          </div>
+          <%= form_with model: [@post, @comment], local: true do |form| %>
+            <div class = 'form-group'>
+              <%= form.text_area :content, class:'form-control mb-3' %>
+            </div>
+            <div class = 'text-right'>
+              <%= form.submit 'コメントする', class:'btn btn-primary' %>
+            </div>
+          <% end %>
         </div>
-        <%= form_with model: [@post, @comment], local: true do |form| %>
-          <div class = 'form-group'>
-            <%= form.text_area :content, class:'form-control mb-3' %>
-          </div>
-          <div class = 'text-right'>
-            <%= form.submit 'コメントする', class:'btn btn-primary' %>
-          </div>
-        <% end %>
-      </div>
+      <% end %>
 
 
 
