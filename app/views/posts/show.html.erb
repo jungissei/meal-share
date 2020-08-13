@@ -5,9 +5,27 @@
         <%= render 'users/user-info', user:@post.user %>
         <small class="color-text-l-gray"><%= l @post.created_at, format: :short %>に投稿</small>
         <% if current_user == @post.user %>
-          <%= link_to  edit_post_path(@post), class:'ml-auto text-decoration-none' do %>
-            <small><i class="far fa-edit"></i>編集する</small>
-          <% end %>
+          <div class="ml-auto">
+            <div class="btn-group">
+              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-cog"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right p-3">
+                <li class="mb-2">
+                  <%= link_to  edit_post_path(@post), class:'ml-auto text-decoration-none' do %>
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                    <span>記事編集</span>
+                  <% end %>
+                </li>
+                <li class="mb-2">
+                  <%= link_to  post_path(@post), class:'ml-auto text-decoration-none', method: :delete do %>
+                    <i class="fas fa-trash-alt"></i>
+                    <span>記事削除</span>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
         <% end %>
       </div>
 
