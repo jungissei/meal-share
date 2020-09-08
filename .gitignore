@@ -33,3 +33,8 @@ yarn-debug.log*
 .env
 
 /public/uploads
+
+
+/docker/nginx/ssl/server.crt
+/docker/nginx/ssl/server.csr
+/docker/nginx/ssl/server.key
