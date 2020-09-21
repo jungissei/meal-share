@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178425535-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-178425535-1');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="noindex">
     <title>Meal Share</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -26,7 +36,6 @@
           let HiddenImgName = HiddenElemImgNameObj[HiddenElemImgNameObj.length - 1];
           FormFileText.text(HiddenImgName);
         }
-
       });
 
     </script>
