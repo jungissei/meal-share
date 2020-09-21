@@ -64,3 +64,5 @@ gem 'carrierwave'
 gem 'fog'
 
 gem 'kaminari'
+
+gem 'rack-attack'
