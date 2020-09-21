@@ -21,6 +21,8 @@ class User < ApplicationRecord
 
   attr_accessor :login
 
+  validate :password_complexity
+
   def login
     @login || self.username || self.email
   end
@@ -69,4 +71,8 @@ class User < ApplicationRecord
   end
 
 
+  def password_complexity
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$/
+    errors.add :password, 'パスワードの長さは6文字以上で、大文字、小文字、数字、特殊文字がそれぞれ1つずつ含まれている必要があります。'
+  end
 end

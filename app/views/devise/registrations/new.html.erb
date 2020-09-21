@@ -29,7 +29,7 @@
     <div class="field">
       <%= f.label :password, class:'sr-only' %>
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <div class="text-left"><small>パスワードの長さは<%= @minimum_password_length %>文字以上で、大文字、小文字、数字、特殊文字がそれぞれ1つずつ含まれている必要があります。</small></div>
       <% end %>
       <%= f.password_field :password, autocomplete: 'new-password', class:'form-control', placeholder:'パスワード' %>
     </div>
