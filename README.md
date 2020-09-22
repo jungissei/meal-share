@@ -4,7 +4,8 @@ Meal Shareとは、食べ物をシェアするウェブサイトです。 [http
 
 ***DebugAccount:***
 
-[email] [issei-dev@gmail.com](mailto:issei-dev@gmail.com)[password] bmm4NVMRUAaY
+[email] [issei-dev@gmail.com](mailto:issei-dev@gmail.com)
+[password] bmm4NVMRUAaY
 
 
 
@@ -36,7 +37,7 @@ Meal Shareとは、食べ物をシェアするウェブサイトです。 [http
 
 ## AWS 構成図
 
-[https://user-images.githubusercontent.com/42998753/93853666-3b454480-fcef-11ea-8488-c22e5e5637df.jpg](https://user-images.githubusercontent.com/42998753/93853666-3b454480-fcef-11ea-8488-c22e5e5637df.jpg)
+![93853666-3b454480-fcef-11ea-8488-c22e5e5637df](https://user-images.githubusercontent.com/42998753/93854495-d7238000-fcf0-11ea-9395-fdf68b68ca70.jpg)
 
 
 ## 概要
