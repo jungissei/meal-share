@@ -37,7 +37,7 @@ Meal Shareとは、食べ物をシェアするウェブサイトです。 [http
 
 ## AWS 構成図
 
-![93853666-3b454480-fcef-11ea-8488-c22e5e5637df](https://user-images.githubusercontent.com/42998753/93854495-d7238000-fcf0-11ea-9395-fdf68b68ca70.jpg)
+![download](https://user-images.githubusercontent.com/42998753/93855276-359d2e00-fcf2-11ea-87e5-22a037bb4dbf.png)
 
 
 ## 概要
