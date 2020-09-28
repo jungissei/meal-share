@@ -5,55 +5,51 @@ Meal Shareとは、食べ物をシェアするウェブサイトです。 [http
 ***DebugAccount:***
 
 [email] [issei-dev@gmail.com](mailto:issei-dev@gmail.com)
-[password] bmm4NVMRUAaY
+[password] bmm4/VM*UAaY
 
+## 使用技術
 
-
-## 使用した技術
-
+- Ruby 2.6.3
+- Ruby on Rails 6.0.2
+- MySQL 5.7
 - AWS
-    - ECS
-    - ECR
-    - Route53
-    - S3
-    - RDS
-    - ALB
+  - VPC
+  - ECS
+  - ECR
+  - Route53
+  - S3
+  - RDS
+  - ALB
 - デプロイ
-    - CircleCI
+  - CircleCI
 - 画像アップロード
-    - carrierwave
-    - fog
+  - carrierwave
+  - fog
 - 通知機能
 - ユーザー認証
-    - Devise
+  - Devise
 - DB
-    - mysql
+  - mysql
 - ページネーション
-    - kaminari
+  - kaminari
 - デザイン
-    - bootstrap
-    - font-awesome-sass
-
+  - Bootstrap4
 
 ## AWS 構成図
 
 ![download](https://user-images.githubusercontent.com/42998753/93855276-359d2e00-fcf2-11ea-87e5-22a037bb4dbf.png)
-
 
 ## 概要
 
 美味しいものをネット上に記録しておきたいという方は多いと思います。
 Meal Shareとは、作った料理や、レストランの食べ物をシェアし交流するウェブサイトです。 
 
-
 ## 機能
 
-- 記事を投稿する(写真を添付)
+- ユーザー登録、ログイン機能(devise)
+- 投稿機能
+  - 画像投稿
 - コメントの送信
 - 記事にいいねを付ける
-- ユーザーをフォローする
+- フォロー機能
 - 通知機能
-
-## Requirement
-ruby 2.6.3
-rails 6.0.2
