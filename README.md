@@ -4,7 +4,7 @@ Meal Shareとは、食べ物をシェアするウェブサイトです。 [http
 
 ***DebugAccount:***
 
-[email] [issei-dev@gmail.com](mailto:issei-dev@gmail.com)
+[email] [issei-dev@gmail.com](mailto:issei-dev@gmail.com)<br />
 [password] bmm4/VM*UAaY
 
 ## 使用技術
