@@ -324,3 +324,31 @@ img{
     border: 1px solid theme-color('primary');
   }
 }
+
+
+/*table-form
+------------------------------------------------------*/
+.table-form{
+  .table-form__field-name{
+    position: relative;
+    padding-left: 3.5em;
+
+    &::before{
+      content:"任意";
+      background-color: #6590FC;
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: white;
+      padding:0 .5em ;
+      font-size: .9em;
+    }
+  }
+
+  .require{
+    &::before{
+      content:"必須";
+      background-color: #FC9DB8;
+    }
+  }
+}
