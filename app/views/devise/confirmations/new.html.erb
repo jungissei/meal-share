@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class:'form-signin' }) do |f| %>
+  <%= form_with model: @user, url: user_confirmation_path, id:'new_user', class:'form-signin', method: :post, local: true do |f| %>
     <h1 class="title-primary">確認メール再送信</h1>
     <%= render 'devise/shared/error_messages', resource: resource %>
 

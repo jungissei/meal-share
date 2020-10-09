@@ -63,19 +63,10 @@ ActiveRecord::Schema.define(version: 2020_07_29_212318) do
     t.index ["post_id"], name: "index_post_cats_on_post_id"
   end
 
-  create_table "post_likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_post_likes_on_post_id"
-    t.index ["user_id"], name: "index_post_likes_on_user_id"
-  end
-
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.text "image"
+    t.string "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -125,8 +116,6 @@ ActiveRecord::Schema.define(version: 2020_07_29_212318) do
   add_foreign_key "likes", "users"
   add_foreign_key "post_cats", "cats"
   add_foreign_key "post_cats", "posts"
-  add_foreign_key "post_likes", "posts"
-  add_foreign_key "post_likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"

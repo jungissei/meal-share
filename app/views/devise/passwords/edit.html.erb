@@ -1,22 +1,33 @@
 <div class="container">
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class:'form-signin' }) do |f| %>
+  <%= form_with model: @user, url: user_password_path, id:'new_user', class:'form-signin', method: :put, local: true do |f| %>
     <h1 class="title-primary">パスワード設定</h1>
 
     <%= render "devise/shared/error_messages", resource: resource %>
     <%= f.hidden_field :reset_password_token %>
 
-    <div class="field">
-      <%= f.label :password, '新しいパスワード', class:'sr-only' %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-      <% end %>
-      <%= f.password_field :password, autofocus: true, autocomplete: 'new-password', class:'form-control', placeholder:'新しいパスワード' %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password_confirmation, '確認用パスワード' %>
-      <%= f.password_field :password_confirmation, autocomplete: 'new-password', class:'form-control', placeholder:'確認用パスワード' %>
-    </div>
+    <table class="table table-striped table-form">
+      <tbody>
+        <tr>
+          <td>
+            <div class="form-file custom-file">
+              <div class="mb-3">
+                <%= f.password_field :password, autocomplete: 'new-password', class:'form-control', placeholder:'新しいパスワード' %>
+                <% if @minimum_password_length %>
+                  <div><em>(※パスワードの長さは<%= @minimum_password_length %>文字以上で、大文字、小文字、数字、特殊文字がそれぞれ1つずつ含まれている必要があります。)</em></div>
+                <% end %>
+              </div>
+              <div class="mb-3">
+                <div class="mb-2"><%= f.label :password_confirmation, '新しいパスワードをもう一度入力してください' %></div>
+                <div class="field">
+                  <%= f.label :password_confirmation, class:'sr-only' %>
+                  <%= f.password_field :password_confirmation, autocomplete: 'new-password', class:'form-control', placeholder:'新しいパスワード(確認用)' %>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="actions">
       <%= f.submit '登録', class:'btn btn-lg btn-primary btn-block' %>

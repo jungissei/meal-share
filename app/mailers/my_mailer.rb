@@ -13,7 +13,7 @@ class MyMailer < Devise::Mailer
 
   def default_opts
     {
-        bcc: Settings.mail[:bcc]
+        bcc: ENV['MAIL_BCC']
     }
   end
 end

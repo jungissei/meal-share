@@ -1,6 +1,6 @@
 <div class="container">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:'form-signin'}) do |f| %>
-    <h1 class="title-primary">ログイン</h1>
+  <%= form_with model: @user, url: user_session_path, id:'new_user', class:'form-signin', method: :post, local: true do |f| %>
+    <h1 class="title-primary text-center">ログイン</h1>
     <div class="field">
       <%= f.label :login, class:'sr-only' %>
       <%= f.text_field :login, class:'form-control', placeholder:'Eメールアドレス or ユーザーID' %>
