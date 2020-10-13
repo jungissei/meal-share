@@ -14,6 +14,8 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @post.comments
+
+    @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
   end
 
   # GET /posts/new

@@ -40,7 +40,7 @@
       <% if user_signed_in? %>
         <div class="post-like pb-4">
           <% if current_user.already_liked?(@post) %>
-            <%= link_to 'Like', post_like_path(@post), method: :delete, class:'post-like__cancel' %>
+            <%= link_to 'Like', post_like_path(@post, @like), method: :delete, class:'post-like__cancel' %>
           <% else %>
             <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
           <% end %>
@@ -83,6 +83,19 @@
             <span class="font-weight-bold ml-3">投稿する</span>
           </div>
           <%= form_with model: [@post, @comment], local: true do |form| %>
+
+            <% if @comment.errors.any? %>
+              <div class="alert alert-danger" role="alert">
+                <h2 class="alert-heading"><%= pluralize(@comment.errors.count, '件のエラー') %>によりコメントが保存されませんでした。</h2>
+                <hr>
+                <ul>
+                  <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class = 'form-group'>
               <%= form.text_area :content, class:'form-control mb-3' %>
             </div>

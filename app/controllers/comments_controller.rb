@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   before_action :comment_params, only: :create
   before_action :correct_user, only: :destroy
 
+  before_action :set_ranks, only: [:create]
+
   def create
     @comment = current_user.comments.build(comment_params)
     @comment.post_id = params[:post_id]
@@ -11,9 +13,9 @@ class CommentsController < ApplicationController
     if @comment.save
       flash[:success] = 'コメントしました'
       @post.create_notification_comment!(current_user, @comment.id)
-      redirect_back(fallback_location: root_path)
+      redirect_to @post
     else
-      @post = Post.find(params[:post_id])
+      @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
       @comments = @post.comments
       render template: 'posts/show'
     end
@@ -34,5 +36,13 @@ class CommentsController < ApplicationController
     def correct_user
       @comment = current_user.comments.find_by(id: params[:id])
       redirect_to root_url if @comment.nil?
+    end
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
+    def set_ranks
+      @rank_posts = Like.create_all_ranks
     end
 end

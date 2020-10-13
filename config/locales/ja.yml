@@ -2,11 +2,17 @@ ja:
   activerecord:
     models:
       post: "投稿"
+      cat: "カテゴリ"
+      comment: "コメント"
     attributes:
       post:
         title: "タイトル"
         image: "画像"
         content: "本文"
+      cat:
+        name: "カテゴリ名"
+      comment:
+        content: "コメント"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

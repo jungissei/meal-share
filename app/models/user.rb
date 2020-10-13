@@ -72,7 +72,7 @@ class User < ApplicationRecord
 
 
   def password_complexity
-    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,70}$/
+    return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$/
     errors.add :password, 'の長さは6文字以上で、大文字、小文字、数字、特殊文字がそれぞれ1つずつ含まれている必要があります。'
   end
 end
