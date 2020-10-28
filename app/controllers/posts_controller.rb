@@ -15,7 +15,9 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments
 
-    @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
+    if user_signed_in?
+      @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
+    end
   end
 
   # GET /posts/new
