@@ -14,23 +14,29 @@
  *= require_self
  */
 
-
-
 @import "./variables";
 
 /*related init
 ------------------------------------------------------*/
-html{
-	overflow-x: hidden;
+html {
+  overflow-x: hidden;
 }
 
 body {
-    background: #fff;
-	overflow: hidden;
-	font-family: -apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;
+  background: #fff;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    Meiryo, sans-serif;
 }
 
-body, h1, h2, h3, h4, h5, h6 ,p {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   font-size: 16px;
   line-height: 1.75;
   letter-spacing: 1.5px;
@@ -40,98 +46,95 @@ body, h1, h2, h3, h4, h5, h6 ,p {
   color: #333;
 }
 
-a{
+a {
   color: #666;
 
-  &:hover{
+  &:hover {
     background-color: transparent;
     color: #666;
   }
 }
 
-img{
+img {
   width: auto;
   max-width: 100%;
   height: auto;
 }
 
-
 /*header
 ------------------------------------------------------*/
-.header{
+.header {
   display: flex;
   align-items: center;
   font-size: 1.4em;
 
-  a{
+  a {
     text-decoration: none;
     color: black;
   }
 
-  .header__logo{
+  .header__logo {
     font-weight: 700;
-    margin-right:auto ;
-    padding: .25em;
+    margin-right: auto;
+    padding: 0.25em;
   }
 
-  .header__icon{
+  .header__icon {
     text-align: center;
     width: 58px;
-    padding: .25em;
+    padding: 0.25em;
     position: relative;
-      i{
-        display: block;
-      }
+    i {
+      display: block;
+    }
 
-      span{
-        display: block;
-        font-size: 9px;
-        letter-spacing: 0;
-      }
+    span {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 0;
+    }
   }
 
-  .header__notifications-new{
+  .header__notifications-new {
     width: 15px;
     height: 15px;
     background-color: orangered;
     border-radius: 50%;
     position: absolute;
-    top: .1em;
-    left: .5em;
+    top: 0.1em;
+    left: 0.5em;
   }
-
 }
-
 
 /*footer
 ------------------------------------------------------*/
-.footer{
-  padding: .5em;
+.footer {
+  padding: 0.5em;
 
-  .footer-logo{
+  .footer-logo {
     text-align: center;
     font-weight: 700;
     font-size: 1.4em;
 
-    a{
+    a {
       color: white;
       text-decoration: none;
     }
   }
 
-  .footer-copyright{
-    font-size: .7em;
+  .footer-copyright {
+    font-size: 0.7em;
     text-align: center;
     color: white;
 
-    a{
+    a {
       color: white;
       text-decoration: none;
     }
   }
 }
 
-.alert-position{
+.alert-position {
   margin: auto;
   position: absolute;
   top: 55px;
@@ -148,71 +151,71 @@ img{
 
 /*card
 ------------------------------------------------------*/
-.card-img-top{
+.card-img-top {
   height: 250px;
   overflow: hidden;
 
-  img{
+  img {
     object-fit: cover;
   }
 }
 
-.card-cats{
-  font-size: .8em;
+.card-cats {
+  font-size: 0.8em;
 }
 
 .card-cats,
-.card-title{
+.card-title {
   height: 1.8em;
   overflow: hidden;
 }
 
 /*simple
 ------------------------------------------------------*/
-.simple{
+.simple {
   display: flex;
   text-decoration: none;
   color: black !important;
-  transition:background-color .3s linear;
+  transition: background-color 0.3s linear;
 
-  &:not(:last-of-type){
+  &:not(:last-of-type) {
     border-bottom: 1px solid #ccc;
   }
 
-  &:hover{
+  &:hover {
     background-color: #eee;
   }
 
-  > div{
-    padding: .5em;
+  > div {
+    padding: 0.5em;
   }
 
-  .simple__left{
+  .simple__left {
     width: 30%;
     position: relative;
   }
 
-  .simple__right{
+  .simple__right {
     width: 70%;
   }
 
-  .simple__thumb{
-    img{
+  .simple__thumb {
+    img {
       width: 100%;
       height: 55px;
       object-fit: cover;
 
-      @include mq('md'){
+      @include mq("md") {
         height: 142px;
       }
 
-      @include mq('lg'){
+      @include mq("lg") {
         height: 80px;
       }
     }
   }
 
-  .simple__rank-num{
+  .simple__rank-num {
     position: absolute;
     top: 0;
     left: 0;
@@ -220,59 +223,56 @@ img{
     width: 28px;
     text-align: center;
 
-    &.simple__rank-num-1{
-      background-color:#F5D100;
+    &.simple__rank-num-1 {
+      background-color: #f5d100;
     }
-    &.simple__rank-num-2{
-      background-color:#BDC3C9;
+    &.simple__rank-num-2 {
+      background-color: #bdc3c9;
     }
-    &.simple__rank-num-3{
-      background-color:#9F7A46;
+    &.simple__rank-num-3 {
+      background-color: #9f7a46;
     }
   }
 
-  .simple__title{
-    font-size: .9em;
+  .simple__title {
+    font-size: 0.9em;
     height: 3.6em;
     overflow: hidden;
   }
 
-  .simple__like-num{
-    font-size: .8em;
+  .simple__like-num {
+    font-size: 0.8em;
     color: #666;
-
   }
 }
-
 
 /*pagenation
 ------------------------------------------------------*/
 .page-item.active .page-link {
   color: black;
-  background-color: theme-color('primary');
-  border-color: theme-color('primary');
+  background-color: theme-color("primary");
+  border-color: theme-color("primary");
 }
-
 
 /*title
 ------------------------------------------------------*/
-.title-primary:not(.title-reset){
+.title-primary:not(.title-reset) {
   font-size: 1.4em;
   font-weight: 700;
   margin: 1em 0;
 
-  @include mq('md'){
+  @include mq("md") {
     font-size: 2.2em;
   }
 }
 
-.title-secondary:not(.title-reset){
+.title-secondary:not(.title-reset) {
   font-size: 1.2em;
   font-weight: 700;
   border-bottom: 1px #333 solid;
   margin: 1em 0;
 
-  @include mq('md'){
+  @include mq("md") {
     font-size: 1.8em;
   }
 }
@@ -280,75 +280,131 @@ img{
 /*font-size
 ------------------------------------------------------*/
 @each $key, $breakpoint in $breakpoints {
-	@for $i from 0 through 9 {
-        @if $key == 'xs'{
-            .fs-0-#{$i}e{
-                font-size:#{$i/10}em;
-            }
+  @for $i from 0 through 9 {
+    @if $key == "xs" {
+      .fs-0-#{$i}e {
+        font-size: #{$i/10}em;
+      }
 
-            .fs-1-#{$i}e{
-                font-size:#{1 + $i/10}em;
-            }
+      .fs-1-#{$i}e {
+        font-size: #{1 + $i/10}em;
+      }
 
-            .fs-2-#{$i}e{
-                font-size:#{2 + $i/10}em;
-            }
-        } @else {
-            @include mq($key){
-                .fs-#{$key}-0-#{$i}e{
-                    font-size:#{$i/10}em;
-                }
+      .fs-2-#{$i}e {
+        font-size: #{2 + $i/10}em;
+      }
+    } @else {
+      @include mq($key) {
+        .fs-#{$key}-0-#{$i}e {
+          font-size: #{$i/10}em;
+        }
 
-                .fs-#{$key}-1-#{$i}e{
-                    font-size:#{1 + $i/10}em;
-                }
+        .fs-#{$key}-1-#{$i}e {
+          font-size: #{1 + $i/10}em;
+        }
 
-                .fs-#{$key}-2-#{$i}e{
-                    font-size:#{2 + $i/10}em;
-                }
-            }
-		}
-	}
-}
-
-
-/*button
-------------------------------------------------------*/
-.btn-primary{
-  background-color: theme-color('primary');
-  color: black !important;
-  border: 1px solid theme-color('primary');
-
-  &:hover{
-    background-color: rgba(theme-color('primary'), .7);
-    border: 1px solid theme-color('primary');
+        .fs-#{$key}-2-#{$i}e {
+          font-size: #{2 + $i/10}em;
+        }
+      }
+    }
   }
 }
 
+/*button
+------------------------------------------------------*/
+.btn-primary {
+  background-color: theme-color("primary");
+  color: black !important;
+  border: 1px solid theme-color("primary");
+
+  &:hover {
+    background-color: rgba(theme-color("primary"), 0.7);
+    border: 1px solid theme-color("primary");
+  }
+}
 
 /*table-form
 ------------------------------------------------------*/
-.table-form{
-  .table-form__field-name{
+.table-form {
+  .table-form__field-name {
     position: relative;
     padding-left: 3.5em;
 
-    &::before{
-      content:"任意";
-      background-color: #6590FC;
+    &::before {
+      content: "任意";
+      background-color: #6590fc;
       position: absolute;
       top: 0;
       left: 0;
       color: white;
-      padding:0 .5em ;
-      font-size: .9em;
+      padding: 0 0.5em;
+      font-size: 0.9em;
     }
   }
 
-  .require{
-    &::before{
-      content:"必須";
-      background-color: #FC9DB8;
+  .require {
+    &::before {
+      content: "必須";
+      background-color: #fc9db8;
+    }
+  }
+}
+
+/*form-image-uploader
+------------------------------------------------------*/
+.form-image-uploader {
+  @at-root {
+    #{&}__saved-img {
+      margin-bottom: 1em;
+
+      @at-root {
+        #{&}-inner {
+          border: 1px solid #ced4da;
+          border-radius: 0.25rem;
+          display: inline-block;
+        }
+      }
+
+      img {
+        max-height: 300px;
+      }
+    }
+
+    #{&}__preview {
+      display: inline-block;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      position: relative;
+      cursor: pointer;
+
+      img {
+        max-width: 100px;
+        width: auto;
+        max-height: 100px;
+        height: 100%;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}
+
+/*block-toggle
+------------------------------------------------------*/
+.block-toggle {
+  @at-root {
+    #{&}__press {
+      cursor: pointer;
+      margin-bottom: 0.5em;
+    }
+
+    #{&}__content {
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      padding: 0.5em;
     }
   }
 }

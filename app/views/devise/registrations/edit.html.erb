@@ -10,11 +10,33 @@
             <tr>
               <td>
                 <div class="table-form__field-name mb-2"><%= f.label :image, 'ユーザー画像' %></div>
-                <div class="form-file custom-file">
-                  <%= f.file_field :image, class:'form-file-input custom-file-input' %>
-                  <%= f.hidden_field :image_cache %>
-                  <%= f.label :image, class:'form-file-label custom-file-label' do %>
-                    <span class="form-file-text">画像を選択</span>
+                <div class="form-image-uploader">
+                  <% if @user.image.present? %>
+                    <div class="form-image-uploader__saved-img text-center">
+                      <span class="form-image-uploader__saved-img-inner">
+                        <%= image_tag @user.image.to_s %>
+                      </span>
+                    </div>
+                    <div class="block-toggle">
+                      <div class="block-toggle__press text-center">
+                        <div class="btn btn-outline-secondary">
+                          <i class="fas fa-arrow-circle-down"></i> 画像を変更する
+                        </div>
+                      </div>
+                      <div class="block-toggle__content" style="display:none;">
+                        <label for="user_image" class="form-image-uploader__preview">
+                          <%= image_tag 'nophoto.jpg' %>
+                        </label>
+                        <%= f.file_field :image, class:'form-image-uploader__save' %>
+                        <%= f.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+                      </div>
+                    </div>
+                  <% else %>
+                    <label for="user_image" class="form-image-uploader__preview">
+                      <%= image_tag 'nophoto.jpg' %>
+                    </label>
+                    <%= f.file_field :image, class:'form-image-uploader__save' %>
+                    <%= f.hidden_field :image_cache, class:'form-image-uploader__cache' %>
                   <% end %>
                 </div>
               </td>
