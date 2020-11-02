@@ -13,16 +13,38 @@
         </div>
       <% end %>
 
-      <div class="field">
-        <%= form.text_field :title, class: 'form-control', placeholder: 'タイトル：料理名、ごはんの名前' %>
+      <div class="form-file custom-file mb-3">
+        <% if post.image.present? %>
+          <div class="form-image-uploader__saved-img">
+            <span class="form-image-uploader__saved-img-inner">
+              <%= image_tag post.image.to_s %>
+            </span>
+          </div>
+          <div class="block-toggle">
+            <div class="block-toggle__press">
+              <div class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-circle-down"></i> 画像を変更する
+              </div>
+            </div>
+            <div class="block-toggle__content" style="display:none;">
+              <label for="post_image" class="form-image-uploader__preview">
+                <%= image_tag 'nophoto.jpg' %>
+              </label>
+              <%= form.file_field :image, class:'form-image-uploader__save' %>
+              <%= form.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+            </div>
+          </div>
+        <% else %>
+          <label for="post_image" class="form-image-uploader__preview">
+            <%= image_tag 'nophoto.jpg' %>
+          </label>
+          <%= form.file_field :image, class:'form-image-uploader__save' %>
+          <%= form.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+        <% end %>
       </div>
 
-      <div class="form-file custom-file mb-3">
-        <%= form.file_field :image, class:'form-file-input custom-file-input' %>
-        <%= form.hidden_field :image_cache %>
-        <%= form.label :image, class:'form-file-label custom-file-label' do %>
-          <span class="form-file-text">料理、ごはんの画像を選択</span>
-        <% end %>
+      <div class="field">
+        <%= form.text_field :title, class: 'form-control', placeholder: 'タイトル：料理名、ごはんの名前' %>
       </div>
 
       <div class="field">
