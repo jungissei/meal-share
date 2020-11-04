@@ -21,6 +21,8 @@ class User < ApplicationRecord
 
   attr_accessor :login
 
+  validates :email, uniqueness: true
+  validates :username, presence: true, uniqueness: true
   validate :password_complexity
 
   def login
