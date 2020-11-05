@@ -408,3 +408,15 @@ img {
     }
   }
 }
+
+/*btn
+------------------------------------------------------*/
+.btn-twitter {
+  color: #fff !important;
+  background-color: rgba(#55acee, 1);
+  border-color: rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: rgba(#55acee, 0.7) !important;
+  }
+}
