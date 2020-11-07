@@ -38,16 +38,7 @@
       <div><%= @post.content %></div>
 
       <div class="pt-4 pb-4 d-flex align-items-center">
-        <% if user_signed_in? %>
-          <div class="post-like mr-auto">
-            <% if current_user.already_liked?(@post) %>
-              <%= link_to 'Like', post_like_path(@post, @like), method: :delete, class:'post-like__cancel' %>
-            <% else %>
-              <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
-            <% end %>
-            <div class="post-like__num"><%= @post.likes.count %></div>
-          </div>
-        <% end %>
+        <%= render 'likes/like', post:@post, like:@like %>
 
         <%= link_to "https://twitter.com/share?ref_src=twsrc%5Etfw&url=#{url_for(protocol: ENV['WEB_PROTOCOL'], host: ENV['WEB_HOST'])}&text=#{@post.title}&hashtags=MealShare", class:'btn btn-twitter ml-auto', target:'_blank' do %>
           <i class="fab fa-twitter"></i> Tweet
