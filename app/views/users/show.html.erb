@@ -26,7 +26,11 @@
           </div>
         </div>
         <% if user_signed_in? %>
-          <%= render 'relationships/follow_button', user: @user %>
+          <% unless current_user == @user %>
+            <div class="user-follow">
+              <%= render partial: 'relationships/follow_button', locals: { user: @user, relationship: @relationship } %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>

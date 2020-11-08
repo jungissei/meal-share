@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   def show
     @posts = Post.where(user_id:params[:id]).order(created_at: :desc).page(params[:page])
+
+    @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @user)
   end
 
   private

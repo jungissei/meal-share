@@ -40,15 +40,9 @@
       <div class="pt-4 pb-4 d-flex align-items-center">
         <% if user_signed_in? %>
           <div class="post-like mr-auto">
-            <% if current_user.already_liked?(@post) %>
-              <%= link_to 'Like', post_like_path(@post, @like), method: :delete, class:'post-like__cancel' %>
-            <% else %>
-              <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
-            <% end %>
-            <div class="post-like__num"><%= @post.likes.count %></div>
+            <%= render partial: 'likes/like', locals: { post: @post, like: @like } %>
           </div>
         <% end %>
-
         <%= link_to "https://twitter.com/share?ref_src=twsrc%5Etfw&url=#{url_for(protocol: ENV['WEB_PROTOCOL'], host: ENV['WEB_HOST'])}&text=#{@post.title}&hashtags=MealShare", class:'btn btn-twitter ml-auto', target:'_blank' do %>
           <i class="fab fa-twitter"></i> Tweet
         <% end %>
@@ -58,8 +52,12 @@
       <% if user_signed_in? %>
         <hr>
         <div class="d-flex align-items-center">
-          <%= render 'users/user-info', user:@post.user %>
-          <%= render 'relationships/follow_button', user: @post.user %>
+          <%= render 'users/user-info', user: @post.user %>
+          <% unless current_user == @post.user %>
+            <div class="user-follow">
+              <%= render partial: 'relationships/follow_button', locals: { user: @post.user, relationship: @relationship } %>
+            </div>
+          <% end %>
         </div>
       <% end %>
 
@@ -68,17 +66,9 @@
       </div>
 
       <h2 class="title-primary"><i class="fas fa-comments mr-2"></i>コメント</h2>
-      <div>
+      <div class="post-comment">
         <% @comments.each do |comment| %>
-          <div class="d-flex align-items-center">
-            <%= render 'users/user-info', user:comment.user %>
-            <small class="color-text-l-gray ml-auto"><%= l comment.created_at %></small>
-          </div>
-          <div><%= comment.content %></div>
-          <% if current_user == comment.user %>
-            <small class="text-right d-block"><%= link_to '削除', post_comment_path(@post, comment), method: :delete %></small>
-          <% end %>
-          <hr>
+          <%= render partial: 'comments/comment', locals: { comment: comment, post: @post } %>
         <% end %>
       </div>
 
@@ -88,7 +78,7 @@
             <%= render 'users/user-info', user:current_user %>
             <span class="font-weight-bold ml-3">投稿する</span>
           </div>
-          <%= form_with model: [@post, @comment], local: true do |form| %>
+          <%= form_with model: [@post, @comment] do |form| %>
 
             <% if @comment.errors.any? %>
               <div class="alert alert-danger" role="alert">
