@@ -11,9 +11,7 @@ class CommentsController < ApplicationController
     @post = @comment.post
 
     if @comment.save
-      flash[:success] = 'コメントしました'
       @post.create_notification_comment!(current_user, @comment.id)
-      redirect_to @post
     else
       @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
       @comments = @post.comments
@@ -24,8 +22,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    flash[:success] = 'コメントを削除しました'
-    redirect_to @comment.post
+
   end
 
   private

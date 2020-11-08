@@ -66,17 +66,9 @@
       </div>
 
       <h2 class="title-primary"><i class="fas fa-comments mr-2"></i>コメント</h2>
-      <div>
+      <div class="post-comment">
         <% @comments.each do |comment| %>
-          <div class="d-flex align-items-center">
-            <%= render 'users/user-info', user:comment.user %>
-            <small class="color-text-l-gray ml-auto"><%= l comment.created_at %></small>
-          </div>
-          <div><%= comment.content %></div>
-          <% if current_user == comment.user %>
-            <small class="text-right d-block"><%= link_to '削除', post_comment_path(@post, comment), method: :delete %></small>
-          <% end %>
-          <hr>
+          <%= render partial: 'comments/comment', locals: { comment: comment, post: @post } %>
         <% end %>
       </div>
 
@@ -86,7 +78,7 @@
             <%= render 'users/user-info', user:current_user %>
             <span class="font-weight-bold ml-3">投稿する</span>
           </div>
-          <%= form_with model: [@post, @comment], local: true do |form| %>
+          <%= form_with model: [@post, @comment] do |form| %>
 
             <% if @comment.errors.any? %>
               <div class="alert alert-danger" role="alert">
