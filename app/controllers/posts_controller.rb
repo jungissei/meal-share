@@ -17,8 +17,8 @@ class PostsController < ApplicationController
 
     if user_signed_in?
       @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
-
       @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @post.user)
+
     end
   end
 
