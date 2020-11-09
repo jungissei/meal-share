@@ -5,14 +5,18 @@ $(document).on('turbolinks:load', () =>{
 
   const imgUplorader = new ImgUplorader;
   imgUplorader.copyToSaveInput();
+  imgUplorader.resetPreview();
 
 });
 
 class ImgUplorader{
   constructor(){
-    this.selectorPreview = '.form-image-uploader__preview';
+    this.selectorWrapAll = '.form-image-uploader';
+    this.selectorPreviewImg = '.form-image-uploader__preview-img';
     this.selectorSave = '.form-image-uploader__save';
     this.selectorCache = '.form-image-uploader__cache';
+    this.selectorLabel = '.form-image-uploader__label';
+    this.selectorCancel = '.form-image-uploader__cancel';
     this.noPhotoImgPath = '/assets/nophoto-e1a743df0c155237d2677a50919e83279a8002ff93f24727582e52ffb2347dd1.jpg';
 
   }
@@ -69,10 +73,11 @@ class ImgUplorader{
 
   /*
    * Change preview image to nophoto image when image is not selected
-   * @param input : Element of current target
+   * @param selector : Element of current target
   */
-  changeNoPhotoImg(input){
-    $(input).prev(this.selectorImg).children('img').attr('src', this.noPhotoImgPath);
+  changeNoPhotoImg(selector){
+    $(selector).closest(this.selectorWrapAll).find(this.selectorLabel).text('画像選択...');
+    $(selector).closest(this.selectorWrapAll).find(this.selectorPreviewImg).attr('src', this.noPhotoImgPath);
   }
 
   /*
@@ -82,10 +87,28 @@ class ImgUplorader{
   changeSelectedImg(input){
     const reader = new FileReader();
     reader.onload = (progressEvent) => {
-      $(input).prev(this.selectorImg).children('img').attr('src', progressEvent.currentTarget.result);
+      $(input).closest(this.selectorWrapAll).find(this.selectorPreviewImg).attr('src', progressEvent.currentTarget.result);
     }
 
     const file = input[0].files[0];
+    $(input).closest(this.selectorWrapAll).find(this.selectorLabel).text(file.name);
     reader.readAsDataURL(file);
+  }
+
+  /*
+  * Reset preview image, input, label
+  */
+  resetPreview(){
+    $(document).on('click', this.selectorCancel, event => {
+
+      const cancelBtn = $(event.currentTarget);
+
+      //Make input value empty
+      $(cancelBtn).closest(this.selectorWrapAll).find(this.selectorSave).val('');
+
+      // Change preview image to nophoto image
+      this.changeNoPhotoImg(cancelBtn);
+
+    });
   }
 }
