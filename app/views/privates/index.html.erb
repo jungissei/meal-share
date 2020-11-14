@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row mt-3 mb-3">
+    <div class="col-12 col-lg-3">
+      <%= render partial: 'users/user', locals: { user: @user, relationship: @relationship, posts: @user.posts.status_public} %>
+    </div>
+    <div class="col-12 col-lg-9 m-auto">
+      <ul class="nav nav-tabs mb-3">
+        <li class="nav-item">
+          <%= link_to '公開', user_path(@user), class:'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '非公開', user_privates_path(@user), class:'nav-link active' %>
+        </li>
+      </ul>
+      <% if @posts.count >= 1 %>
+        <ul class="li-asterisk fs-0-9e"><li>あなたにだけ表示される記事です。</li></ul>
+        <div class="fs-0-9e mb-3">投稿数：<%= @posts.count %></div>
+        <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
+          <% @posts.each do |post| %>
+            <%= render 'posts/card', post:post %>
+          <% end %>
+        </div>
+        <%= paginate @posts %>
+      <% else %>
+        <p class="text-center pt-5 pb-5">記事はありません。</p>
+      <% end %>
+    </div>
+  </div>
+</div>

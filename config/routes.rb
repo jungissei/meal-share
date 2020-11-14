@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :relationships, only: [:create, :destroy]
+    resources :privates, only: [:index]
   end
 
   resources :notifications, only: :index

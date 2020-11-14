@@ -11,6 +11,9 @@
       <%= render 'cats/post-cats', post:post %>
 
       <div class="card-title">
+        <% if post.status_private? %>
+          非公開:
+        <% end %>
         <%= post.title %>
       </div>
       <div class="text-right">

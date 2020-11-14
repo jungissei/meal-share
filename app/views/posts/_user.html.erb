@@ -1,0 +1,12 @@
+<div class="user-info">
+  <%= link_to user_path(user), class:'user-info__image' do %>
+    <% if user.image? %>
+      <%= image_tag user.image.to_s %>
+    <% else %>
+      <%= image_tag 'nophoto.jpg' %>
+    <% end %>
+  <% end %>
+  <%= link_to user_path(user), class:'user-info__name' do %>
+    @<%= user.username %>
+  <% end %>
+</div>

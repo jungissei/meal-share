@@ -23,7 +23,6 @@ class ImgUplorader{
 
   /*
   * Change preview image to nophoto image when image is not selected
-  * @param input : Element of current target
   */
   copyToSaveInput(){
     $(document).on('change', this.selectorSave, event => {

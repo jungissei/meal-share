@@ -16,6 +16,7 @@ class Post < ApplicationRecord
 
   has_many :notifications, dependent: :destroy
 
+  enum status: { public: 0, private: 1 }, _prefix: true
 
   def create_notification_like!(current_user)
     # すでに「いいね」されているか検索
@@ -59,7 +60,5 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
-
 
 end
