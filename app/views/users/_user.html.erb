@@ -1,0 +1,30 @@
+<div class="user-show">
+  <div class="user-show__image">
+    <% if user.image? %>
+      <%= image_tag user.image.to_s %>
+    <% else %>
+      <%= image_tag 'nophoto.jpg' %>
+    <% end %>
+  </div>
+  <div class="user-show__name"><%= user.name %></div>
+  <div class="user-show__username">@<%= user.username %></div>
+  <div class="user-show__d-flex mt-3">
+    <div class="user-show__posts">
+      <div class="user-show__count"><%= posts.count %></div>
+      <div class="user-show__count-name">投稿数</div>
+    </div>
+    <div class="user-show__follow">
+      <div class="user-show__count"><%= user.followings.count %></div>
+      <div class="user-show__count-name">フォロー</div>
+    </div>
+    <div class="user-show__folloer">
+      <div class="user-show__count"><%= user.followers.count %></div>
+      <div class="user-show__count-name">フォロワー</div>
+    </div>
+  </div>
+  <% if user_signed_in? && !current_user == user %>
+    <div class="user-follow">
+      <%= render partial: 'relationships/follow_button', locals: { user: user, relationship: relationship } %>
+    </div>
+  <% end %>
+</div>

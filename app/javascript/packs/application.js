@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 require("custom/imgUploader")
+require("custom/postStatus")
 require("custom/slideToggle")
 
 

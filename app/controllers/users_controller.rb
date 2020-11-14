@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-    @posts = Post.where(user_id:params[:id]).order(created_at: :desc).page(params[:page])
+    @posts = Post.where(user_id: @user).status_public.order(created_at: :desc).page(params[:page])
 
-    @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @user)
+    if user_signed_in?
+      @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @user)
+    end
   end
 
   private

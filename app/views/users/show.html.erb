@@ -1,46 +1,32 @@
 <div class="container">
   <div class="row mt-3 mb-3">
     <div class="col-12 col-lg-3">
-      <div class="user-show">
-        <div class="user-show__image">
-          <% if @user.image? %>
-            <%= image_tag @user.image.to_s %>
-          <% else %>
-            <%= image_tag 'nophoto.jpg' %>
-          <% end %>
-        </div>
-        <div class="user-show__name"><%= @user.name %></div>
-        <div class="user-show__username">@<%= @user.username %></div>
-        <div class="user-show__d-flex mt-3">
-          <div class="user-show__posts">
-            <div class="user-show__count"><%= @user.posts.count %></div>
-            <div class="user-show__count-name">投稿数</div>
-          </div>
-          <div class="user-show__follow">
-            <div class="user-show__count"><%= @user.followings.count %></div>
-            <div class="user-show__count-name">フォロー</div>
-          </div>
-          <div class="user-show__folloer">
-            <div class="user-show__count"><%= @user.followers.count %></div>
-            <div class="user-show__count-name">フォロワー</div>
-          </div>
-        </div>
-        <% if user_signed_in? %>
-          <% unless current_user == @user %>
-            <div class="user-follow">
-              <%= render partial: 'relationships/follow_button', locals: { user: @user, relationship: @relationship } %>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: 'users/user', locals: { user: @user, relationship: @relationship, posts: @user.posts.status_public } %>
     </div>
     <div class="col-12 col-lg-9 m-auto">
-      <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
-        <% @posts.each do |post| %>
-          <%= render 'posts/card', post:post %>
+      <% if user_signed_in? && current_user == @user %>
+        <ul class="nav nav-tabs mb-3">
+          <li class="nav-item">
+            <%= link_to '公開', user_path(@user), class:'nav-link active' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '非公開', user_privates_path(@user), class:'nav-link' %>
+          </li>
+        </ul>
+      <% end %>
+      <% if @posts.count %>
+        <% if user_signed_in? && current_user == @user %>
+          <ul class="li-asterisk fs-0-9e"><li>すべての人に公開される記事です。</li></ul>
+          <div class="fs-0-9e mb-3">投稿数：<%= @posts.count %></div>
         <% end %>
-      </div>
-      <%= paginate @posts %>
-    </div>
+        <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
+          <% @posts.each do |post| %>
+            <%= render 'posts/card', post:post %>
+          <% end %>
+        </div>
+        <%= paginate @posts %>
+      <% else %>
+        <p class="text-center">記事はありません。</p>
+      <% end %>
   </div>
 </div>

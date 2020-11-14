@@ -1,6 +1,6 @@
 <%= form_with(model: post, local: true) do |form| %>
   <div class="row">
-    <div class="col-12 col-lg-10">
+    <div class="col-12 col-lg-9">
       <% if post.errors.any? %>
         <div class="alert alert-danger" role="alert">
           <h2 class="alert-heading"><%= pluralize(post.errors.count, '件のエラー') %>により投稿が保存されませんでした。</h2>
@@ -22,7 +22,7 @@
           </div>
           <div class="block-toggle">
             <div class="block-toggle__press">
-              <div class="btn btn-outline-secondary">
+              <div class="block-toggle__press-btn btn btn-outline-secondary">
                 <i class="fas fa-arrow-circle-down"></i> 画像を変更する
               </div>
             </div>
@@ -91,17 +91,35 @@
 
 
     </div>
-    <div class="col-12 col-lg-2">
-      <% if !current_page?(new_post_path) %>
-        <div class="mb-2 text-right">
-          <%= link_to '投稿を確認', @post, class:'btn btn-secondary text-white w-100' %>
+    <div class="col-12 col-lg-3">
+
+      <div class="post-update">
+        <div class="post-update__submit-wrap">
+          <%= form.submit('更新', class:'btn btn-dark w-100') %>
         </div>
-      <% end %>
-
-      <div class="text-right">
-        <%= form.submit('更新', class:'btn btn-dark w-100') %>
+        <div class="post-update__status">
+          <div class="post-status">
+            <div class="post-status__title">表示状態</div>
+            <div class="post-status__cur"><%= I18n.t("activerecord.attributes.post.statuses.#{@post.status}") %></div>
+            <div class="post-status__modal" style="display:none;">
+              <%= form.label(:public, for: nil, class:'post-status__label') do %>
+                <div class="post-status__radio">
+                  <%= form.radio_button :status, :public, class: 'post-status__radio-btn' %>
+                  <%= I18n.t('activerecord.attributes.post.statuses.public') %>
+                </div>
+                <div class="post-status__detail">すべての人に表示されます。</div>
+              <% end %>
+              <%= form.label(:private, for: nil, class:'post-status__label') do %>
+                <div class="post-status__radio">
+                  <%= form.radio_button :status, :private, class: 'post-status__radio-btn' %>
+                  <%= I18n.t('activerecord.attributes.post.statuses.private') %>
+                </div>
+                <div class="post-status__detail">あなたにだけ表示されます。</div>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-
 
       <div class="scroll">
         <h2 class="font-weight-bold border-bottom mb-3">カテゴリ</h2>

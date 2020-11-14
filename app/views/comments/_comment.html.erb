@@ -1,6 +1,6 @@
 <div class="comment-id-<%= comment.id %>">
   <div class="d-flex align-items-center">
-    <%= render 'users/user-info', user: comment.user %>
+    <%= render partial: 'user', locals: { user: comment.user } %>
     <small class="color-text-l-gray ml-auto"><%= l comment.created_at %></small>
   </div>
   <div><%= comment.content %></div>

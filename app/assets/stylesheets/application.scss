@@ -456,3 +456,24 @@ img {
     background-color: rgba(#55acee, 0.7) !important;
   }
 }
+
+/*li-asterisk
+------------------------------------------------------*/
+.li-asterisk {
+  padding-left: 0;
+  margin-bottom: 0;
+
+  li {
+    list-style: none;
+    padding-left: 1.4em;
+    position: relative;
+
+    &::before {
+      content: "※";
+      position: absolute;
+      top: 0;
+      left: 3px;
+      line-height: 1.1;
+    }
+  }
+}
