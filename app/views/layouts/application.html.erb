@@ -34,7 +34,13 @@
       <div class="container">
         <div class="container__break color_bg-primary">
           <div class="header">
-            <div class="header__logo"><%= link_to "Meal Share", root_path %></div>
+            <div class="header__logo">
+              <% if user_signed_in? %>
+                <%= link_to "Meal Share", posts_path %>
+              <% else %>
+                <%= link_to "Meal Share", root_path %>
+              <% end %>
+            </div>
             <% if user_signed_in? %>
               <div class="header__icon">
                 <%= link_to  notifications_path do %>
@@ -137,10 +143,20 @@
         <div class="container__break color_bg-black">
           <div class="footer">
             <div class="footer-logo">
-              <%= link_to "Meal Share", root_path %>
+              <% if user_signed_in? %>
+                <%= link_to "Meal Share", posts_path %>
+              <% else %>
+                <%= link_to "Meal Share", root_path %>
+              <% end %>
             </div>
             <div class="footer-copyright">
-              ©2020 <%= link_to "Meal Share", root_path %> Allright Reserved.
+              ©2020
+              <% if user_signed_in? %>
+                <%= link_to "Meal Share", posts_path %>
+              <% else %>
+                <%= link_to "Meal Share", root_path %>
+              <% end %>
+              Allright Reserved.
             </div>
           </div>
         </div>
