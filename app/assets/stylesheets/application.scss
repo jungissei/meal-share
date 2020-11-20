@@ -200,18 +200,21 @@ img {
   }
 
   .simple__thumb {
+    position: relative;
+    overflow: hidden;
+    height: 55px;
+
+    @include mq("md") {
+      height: 142px;
+    }
+
+    @include mq("lg") {
+      height: 80px;
+    }
+
     img {
       width: 100%;
-      height: 55px;
       object-fit: cover;
-
-      @include mq("md") {
-        height: 142px;
-      }
-
-      @include mq("lg") {
-        height: 80px;
-      }
     }
   }
 
