@@ -23,3 +23,6 @@ require("/node_modules/bootstrap/dist/js/bootstrap.js");
 require("custom/imgUploader")
 require("custom/postStatus")
 require("custom/slideToggle")
+
+// Enable jQuery in the .js.erb file
+global.$ = jQuery;
