@@ -75,10 +75,6 @@
       max-width: 415px;
       z-index: 1;
       box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-
-      @include mq("lg") {
-        width: 260px;
-      }
     }
 
     #{&}__title {

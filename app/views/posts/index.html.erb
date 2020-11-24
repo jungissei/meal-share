@@ -1,7 +1,10 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-8">
-      <h2 class="title-primary">New Meals</h2>
+    <div class="col-12 col-lg-8 mr-auto  ml-auto">
       <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
         <% @posts.each do |post| %>
           <%= render 'posts/card', post:post %>
@@ -9,8 +12,9 @@
       </div>
       <%= paginate @posts %>
     </div>
-    <div class="col-12 col-lg-4">
-      <%= render 'posts/simple-rank' %>
-    </div>
   </div>
 </div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>

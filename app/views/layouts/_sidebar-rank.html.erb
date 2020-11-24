@@ -1,0 +1,30 @@
+<div class="sidebar-right-rank">
+  <h2 class="title-primary mt-0 mb-0"><i class="fas fa-chart-line"></i> ランキング</h2>
+  <div id="carousel" class="carousel slide mb-2" data-ride="carousel" data-interval="5000">
+    <ol class="carousel-indicators">
+      <% rank_posts.each.with_index(1) do |post, i| %>
+        <li data-target="#carousel" data-slide-to="<%= i %>"<%= ' class="active"' if i == 1 %>></li>
+      <% end %>
+    </ol>
+    <div class="carousel-inner">
+      <% rank_posts.each.with_index(1) do |post, i| %>
+        <%= link_to post, class: "carousel-item sidebar-right-rank__img#{ ' active' if i == 1}" do %>
+          <%= image_tag post.image? ? post.image.to_s: 'nophoto.jpg', class: 'd-block w-100' %>
+          <span class="sidebar-right-rank__num sidebar-right-rank__num-<%= i %>"><%= i %></span>
+        <% end %>
+      <% end %>
+    </div>
+    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">前へ</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">次へ</span>
+    </a>
+  </div>
+  <%= link_to ranking_posts_path, class: "sidebar-right-btn" do %>
+    <span class="sidebar-right-btn__name">もっと見る</span>
+    <span class="sidebar-right-btn__icon"><i class="fas fa-chevron-circle-right"></i></span>
+  <% end %>
+</div>

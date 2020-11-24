@@ -1,0 +1,7 @@
+<div class="sidebar-right">
+  <% if @rank_posts %>
+    <div class="sidebar-right-row">
+        <%= render partial: 'layouts/sidebar-rank', locals: { rank_posts: @rank_posts } %>
+    </div>
+  <% end %>
+</div>

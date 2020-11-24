@@ -1,0 +1,20 @@
+<div class="header shadow-sm">
+  <div class="header__wrap">
+    <div class="header__inner">
+      <div class="header__left">
+        <%= link_to 'Meal Share', root_path, class: 'header-logo-signed-out' %>
+      </div>
+
+      <div class="header__right">
+        <%= link_to new_user_registration_path, class: 'header-icon-round header__sign-up' do %>
+          <i class="fas fa-user-plus"></i>
+          <span class="header-icon-round__name is_show">会員登録</span>
+        <% end %>
+        <%= link_to new_user_session_path, class: 'header-icon-round header__sign-in' do %>
+          <i class="fas fa-sign-in-alt"></i>
+          <span class="header-icon-round__name is_show">ログイン</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

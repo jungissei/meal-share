@@ -20,6 +20,7 @@ require("/node_modules/bootstrap/dist/js/bootstrap.js");
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+require("custom/modal")
 require("custom/imgUploader")
 require("custom/postStatus")
 require("custom/slideToggle")

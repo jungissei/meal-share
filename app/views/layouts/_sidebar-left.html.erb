@@ -1,0 +1,24 @@
+<div class="sidebar-left">
+  <div class="sidebar-left__row">
+    <%= link_to posts_path, class: 'sidebar-left-item' do %>
+      <div class="sidebar-left-item__icon">
+        <i class="fas fa-home"></i>
+      </div>
+      <span class="sidebar-left-item__name">HOME</span>
+    <% end %>
+    <%= link_to search_posts_path, class: 'sidebar-left-item' do %>
+      <div class="sidebar-left-item__icon">
+        <i class="fas fa-search"></i>
+      </div>
+      <span class="sidebar-left-item__name">探す</span>
+    <% end %>
+  </div>
+  <div class="sidebar-left__row">
+    <%= link_to user_path(current_user), class: 'sidebar-left-item-user' do %>
+      <div class="sidebar-left-item-user__img">
+        <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
+      </div>
+      <span class="sidebar-left-item-user__name">@<%= current_user.username %></span>
+    <% end %>
+  </div>
+</div>

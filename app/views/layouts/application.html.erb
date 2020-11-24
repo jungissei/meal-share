@@ -14,108 +14,22 @@
   </head>
 
   <body>
-  <div id="fb-root"></div>
     <header>
-      <div class="container">
-        <div class="container__break color_bg-primary">
-          <div class="header">
-            <div class="header__logo">
-              <% if user_signed_in? %>
-                <%= link_to "Meal Share", posts_path %>
-              <% else %>
-                <%= link_to "Meal Share", root_path %>
-              <% end %>
-            </div>
-            <% if user_signed_in? %>
-              <div class="header__icon">
-                <%= link_to  notifications_path do %>
-                  <i class="fas fa-bell"></i>
-                  <span>通知</span>
-                  <% if unchecked_notifications.any? %>
-                    <div class="header__notifications-new"></div>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="btn-group header__btn-group">
-                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <i class="fas fa-ellipsis-v"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-right">
-                  <li>
-                    <%= link_to user_path(current_user), class:'dropdown-item' do %>
-                        <i class="fas fa-user"></i>
-                        <span>マイページ</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to new_post_path, class:'dropdown-item' do %>
-                        <i class="fas fa-plus-circle"></i>
-                        <span>新規投稿</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to cats_path, class:'dropdown-item' do %>
-                        <i class="fas fa-tags"></i>
-                        <span>カテゴリ</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to edit_user_registration_path, class:'dropdown-item' do %>
-                        <i class="fas fa-user-edit"></i>
-                        <span>ユーザー情報編集</span>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to destroy_user_session_path, class:'dropdown-item', method: :delete do %>
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>ログアウト</span>
-                    <% end %>
-                  </li>
-                </ul>
-              </div>
-            <% else %>
-              <div class="header__icon">
-                <%= link_to new_user_registration_path do %>
-                  <i class="fas fa-user-plus"></i>
-                  <span>会員登録</span>
-                <% end %>
-              </div>
-              <div class="header__icon">
-                <%= link_to  new_user_session_path do %>
-                  <i class="fas fa-sign-in-alt"></i>
-                  <span>ログイン</span>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
+      <% if user_signed_in? %>
+        <%= render partial: 'layouts/header-signed-in' %>
+      <% else %>
+        <%= render partial: 'layouts/header' %>
+      <% end %>
+
       <% if notice %>
-        <div class="mt-3 alert alert-primary alert-dismissible fade show container" role="alert">
-          <%= notice %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        <%= render partial: 'layouts/notice', locals: { notice: notice } %>
       <% end %>
       <% if alert %>
-        <div class="mt-3 alert alert-danger alert-dismissible fade show container" role="alert">
-          <%= alert %>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+        <%= render partial: 'layouts/notice', locals: { alert: alert } %>
       <% end %>
 
       <% if current_page?(root_path) %>
-        <div class="container">
-          <div class="container__break main-visual">
-            <div class="container__break main-visual__inner">
-              <div class="main-visual__logo">Meal Share</div>
-              <div class="main-visual__sub">美味しい食べ物をシェアしよう</div>
-            </div>
-          </div>
-        </div>
+        <%= render partial: 'home/main-visual' %>
       <% end %>
     </header>
     <main>
@@ -124,28 +38,20 @@
 
     </main>
     <footer>
-      <div class="container">
-        <div class="container__break color_bg-black">
-          <div class="footer">
-            <div class="footer-logo">
-              <% if user_signed_in? %>
-                <%= link_to "Meal Share", posts_path %>
-              <% else %>
-                <%= link_to "Meal Share", root_path %>
-              <% end %>
-            </div>
-            <div class="footer-copyright">
-              ©2020
-              <% if user_signed_in? %>
-                <%= link_to "Meal Share", posts_path %>
-              <% else %>
-                <%= link_to "Meal Share", root_path %>
-              <% end %>
-              Allright Reserved.
-            </div>
-          </div>
-        </div>
-      </div>
+      <%= render partial: 'layouts/footer' %>
+
+      <% if user_signed_in? %>
+        <%= render partial: 'layouts/footer-fixed' %>
+
+        <% unless current_page?(new_post_path) %>
+          <%= link_to new_post_path, class: "footer-post shadow-lg" do %>
+            <span class="footer-post__inner">
+              <i class="fas fa-edit"></i>
+              <span class="footer-post__name is_show">投稿する</span>
+            </span>
+          <% end %>
+        <% end %>
+      <% end %>
     </footer>
   </body>
 </html>
