@@ -5,11 +5,9 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-lg-8 mr-auto  ml-auto">
-      <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
-        <% @posts.each do |post| %>
-          <%= render 'posts/card', post:post %>
-        <% end %>
-      </div>
+      <% @posts.each do |post| %>
+        <%= render 'posts/post-card', post: post %>
+      <% end %>
       <%= paginate @posts %>
     </div>
   </div>

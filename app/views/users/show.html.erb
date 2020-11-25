@@ -21,7 +21,7 @@
         <% end %>
         <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
           <% @posts.each do |post| %>
-            <%= render 'posts/card', post:post %>
+            <%= render 'posts/post-card', post:post %>
           <% end %>
         </div>
         <%= paginate @posts %>

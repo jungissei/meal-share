@@ -22,7 +22,7 @@
       <div class="user-show__count-name">フォロワー</div>
     </div>
   </div>
-  <% if user_signed_in? && !current_user == user %>
+  <% if user_signed_in? && current_user != user %>
     <div class="user-follow">
       <%= render partial: 'relationships/follow_button', locals: { user: user, relationship: relationship } %>
     </div>

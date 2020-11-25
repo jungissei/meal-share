@@ -3,37 +3,3 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 @import "./variables";
-
-.post-like {
-  display: flex;
-  flex-wrap: wrap;
-
-  > * {
-    display: flex;
-    align-items: center;
-    margin-right: 0.5em;
-  }
-
-  a {
-    text-decoration: none;
-    padding: 0.25em 1em;
-    font-size: 1.1em;
-    font-weight: 700;
-  }
-
-  .post-like__enable {
-    border: 2px solid #ff8d00;
-    color: #ff8d00;
-  }
-
-  .post-like__cancel {
-    border: 2px solid #ff8d00;
-    background-color: #ff8d00;
-    color: white;
-  }
-
-  .post-like__num {
-    color: #ff8d00;
-    font-weight: 700;
-  }
-}

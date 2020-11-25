@@ -7,13 +7,7 @@
     </div>
   </div>
 </div>
-<div class="container mb-5">
-  <h2 class="title-primary">Meal Share</h2>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
-    <% @posts.each do |post| %>
-      <%= render 'posts/card', post:post %>
-    <% end %>
-  </div>
+<div class="container mt-5 mb-5">
   <div class="text-center">
     <%= link_to '記事一覧はこちら', posts_path(), class:'btn btn-primary btn-lg' %>
   </div>
