@@ -20,11 +20,7 @@ class PostsController < ApplicationController
       end
     end
 
-    if user_signed_in?
-      @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @post.user)
-    end
-
-    @comment = Comment.new
+    @comment_new = Comment.new
     @comments = @post.comments
   end
 

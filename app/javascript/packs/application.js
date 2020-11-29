@@ -20,10 +20,16 @@ require("/node_modules/bootstrap/dist/js/bootstrap.js");
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+// layout
 require("custom/modal")
+
+// /posts/edit
 require("custom/imgUploader")
 require("custom/postStatus")
 require("custom/slideToggle")
+
+// /posts
+require("custom/postImg")
 
 // Enable jQuery in the .js.erb file
 global.$ = jQuery;

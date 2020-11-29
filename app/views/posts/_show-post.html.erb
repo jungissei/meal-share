@@ -4,18 +4,18 @@
       <%= render partial: 'posts/post-user', locals: { post: post } %>
     </div>
   </div>
-  <%= link_to post, class: 'post-card__body' do %>
+  <div class="post-card__body">
     <div class="post-card__title">
       <%= '非公開:' if post.status_private? %>
       <%= post.title %>
     </div>
-    <div class="post-card__img js-img-wrap">
-      <%= image_tag post.image.to_s %>
+    <div>
+      <%= image_tag post.image.to_s, class: 'w-100' %>
     </div>
     <div class="post-card__content">
       <%= post.content %>
     </div>
-  <% end %>
+  </div>
   <div class="post-card__footer">
     <div class="post-card__row">
       <% if user_signed_in? %>
@@ -28,6 +28,16 @@
           <i class="fab fa-twitter"></i> Tweet
         <% end %>
       </div>
+    </div>
+    <div class="post-card__row">
+      <div class="post-card-user">
+        <%= render partial: 'posts/post-user', locals: { post: post } %>
+      </div>
+    </div>
+    <div class="post-card__row">
+        <% if user_signed_in? %>
+          <%= render partial: 'comments/index', locals: { post: post, comments: comments, comment_new: comment_new} %>
+        <% end %>
     </div>
   </div>
 </div>

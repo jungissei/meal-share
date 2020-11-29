@@ -31,16 +31,17 @@ class Modal{
   */
   hideContent(){
     $(document).on('click', event => {
-      if($(this.selectorContent).attr('style')){
-        return;
-      }
+      const clickedSelectorWrap = $(event.currentTarget).closest(this.selectorWrap);
+      $(this.selectorWrap).each((i, elem) =>{
+        if($(elem).children(this.selectorContent).attr('style')){
+          return true;
+        }
 
-      if($(event.target).closest(this.selectorContent).length){
-        return;
-      }
-
-      $(this.selectorContent).closest(this.selectorWrap).removeClass('is_active');
-      $(this.selectorContent).fadeOut(300);
+        if($(elem) != clickedSelectorWrap){
+          $(elem).removeClass('is_active');
+          $(elem).children(this.selectorContent).fadeOut(300);
+        }
+      });
     });
   }
 }

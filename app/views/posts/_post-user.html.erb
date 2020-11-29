@@ -1,0 +1,14 @@
+<% if user_signed_in? && current_user != post.user %>
+  <div class="post-card-user__follow">
+    <%= render partial: 'relationships/follow', locals: { user: post.user } %>
+  </div>
+<% end %>
+<%= link_to user_path(post.user), class: 'post-card-user__img' do %>
+  <%= image_tag post.user.image? ? post.user.image.to_s: 'nophoto.jpg' %>
+<% end %>
+<div class="post-card-user__other">
+  <%= link_to user_path(post.user), class: 'post-card-user__name' do %>
+    @<%= post.user.username %>
+  <% end %>
+  <div class="post-card-user__date"><%= l post.created_at, format: :short %></div>
+</div>
