@@ -834,6 +834,10 @@ footer {
     #{&}__body {
       display: block;
       color: black !important;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     #{&}__title {
@@ -868,6 +872,11 @@ footer {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+    }
+
+    #{&}__count {
+      padding: 5px 0;
+      line-height: 30px;
     }
 
     #{&}__act {
@@ -977,6 +986,18 @@ footer {
       }
     }
   }
+}
+
+.post-card-count-like {
+  color: white;
+  background-color: theme-color-level(primary, -3);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+  font-size: 0.9em;
 }
 
 .user-follow {
@@ -1272,7 +1293,6 @@ footer {
 .title-secondary:not(.title-reset) {
   font-size: 1.2em;
   font-weight: 700;
-  border-bottom: 1px #333 solid;
   margin: 1em 0;
 }
 
@@ -1578,6 +1598,39 @@ footer {
         text-decoration: none;
         background-color: theme-color-level(light, 2);
       }
+    }
+  }
+}
+
+/*block-like
+------------------------------------------------------*/
+.block-like {
+  position: relative;
+
+  @at-root {
+    #{&}__num {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      border-radius: 50%;
+      background-color: theme-color-level(primary, 5);
+      color: white;
+      text-align: center;
+    }
+
+    #{&}__num-1 {
+      background-color: #ffc400;
+    }
+
+    #{&}__num-2 {
+      background-color: #c9c9c9;
+    }
+
+    #{&}__num-3 {
+      background-color: #ac6d4d;
     }
   }
 }

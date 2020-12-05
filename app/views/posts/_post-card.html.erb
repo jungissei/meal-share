@@ -12,9 +12,12 @@
     <div class="post-card__img">
       <%= image_tag post.image.to_s %>
     </div>
-    <div class="post-card__content">
-      <%= post.content %>
+    <% if post.likes.count %>
+    <div class="post-card__count">
+      <span class="post-card-count-like"><i class="fas fa-thumbs-up"></i></span>
+      <%= post.likes.count %>
     </div>
+    <% end %>
   <% end %>
   <div class="post-card__footer">
     <div class="post-card__row">

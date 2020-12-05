@@ -1,0 +1,24 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 mr-auto ml-auto">
+      <h2 class="title-secondary"><i class="fas fa-chart-line text-primary"></i> ランキングTOP10</h2>
+        <div class="mb-3"><i class="fas fa-thumbs-up text-primary mr-2"></i>いいねされた数のランキングTOP10です。</div>
+        <div class="row">
+          <% @posts.each.with_index(1) do |post, i| %>
+            <div class="col-12 col-md-6 block-like">
+              <span class="block-like__num block-like__num-<%= i %>"><%= i %></span>
+              <%= render 'posts/post-card', post: post %>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>

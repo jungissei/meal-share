@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_ranks, only: [:show, :index]
+  before_action :set_ranks, only: [:show, :index, :ranking, :search]
 
   # GET /posts
   # GET /posts.json
@@ -81,6 +81,18 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: '投稿を削除しました。' }
       format.json { head :no_content }
     end
+  end
+
+  def ranking
+    user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
+    user_ids.push(current_user.id)
+    @posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(10)
+  end
+
+  def search
+    user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
+    user_ids.push(current_user.id)
+    @posts = Post.where(user_id: user_ids).status_public.order(created_at: :desc).page(params[:page])
   end
 
   private

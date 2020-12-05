@@ -20,12 +20,16 @@
             <% end %>
           </li>
         </ul>
-        <div class="mb-3">公開記事一覧</div>
+        <h2 class="title-secondary"><i class="fas fa-globe text-primary"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>記事一覧</h2>
       <% end %>
-      <% @posts.each do |post| %>
-        <%= render 'posts/post-card', post: post %>
-      <% end %>
-      <%= paginate @posts %>
+        <div class="row">
+          <% @posts.each do |post| %>
+            <div class="col-12 col-md-6">
+              <%= render 'posts/post-card', post: post %>
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @posts %>
     </div>
   </div>
 </div>
