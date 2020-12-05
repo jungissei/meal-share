@@ -17,7 +17,7 @@ class ImgUplorader{
     this.selectorCache = '.form-image-uploader__cache';
     this.selectorLabel = '.form-image-uploader__label';
     this.selectorCancel = '.form-image-uploader__cancel';
-    this.noPhotoImgPath = '/assets/nophoto-e1a743df0c155237d2677a50919e83279a8002ff93f24727582e52ffb2347dd1.jpg';
+    this.noPhotoImgPath = '/assets/nophoto.jpg';
 
   }
 

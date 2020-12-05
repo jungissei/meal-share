@@ -1,4 +1,4 @@
-<div class="post-card shadow-sm">
+<div id="post-<%= post.id %>" class="post-card shadow-sm">
   <div class="post-card__header">
     <div class="post-card-user">
       <%= render partial: 'posts/post-user', locals: { post: post } %>
@@ -9,7 +9,7 @@
       <%= '非公開:' if post.status_private? %>
       <%= post.title %>
     </div>
-    <div class="post-card__img js-img-wrap">
+    <div class="post-card__img">
       <%= image_tag post.image.to_s %>
     </div>
     <div class="post-card__content">

@@ -22,6 +22,7 @@ class Modal{
     $(document).on('click', this.selectorBtn, event => {
       const selectorCur = $(event.currentTarget);
       selectorCur.closest(this.selectorWrap).addClass('is_active');
+      selectorCur.next(this.selectorContent).css('opacity', '');
       selectorCur.next(this.selectorContent).fadeIn(300);
     });
   }
@@ -31,16 +32,20 @@ class Modal{
   */
   hideContent(){
     $(document).on('click', event => {
-      const clickedSelectorWrap = $(event.currentTarget).closest(this.selectorWrap);
+      const clickedSelectorWrap = $(event.target).parents(this.selectorWrap)[0];
+
       $(this.selectorWrap).each((i, elem) =>{
-        if($(elem).children(this.selectorContent).attr('style')){
+        if($(elem).children(this.selectorContent).attr('style') == 'display:none;'){
           return true;
         }
 
-        if($(elem) != clickedSelectorWrap){
-          $(elem).removeClass('is_active');
-          $(elem).children(this.selectorContent).fadeOut(300);
+        if($(elem)[0] == clickedSelectorWrap){
+          return true;
         }
+
+        $(elem).removeClass('is_active');
+        $(elem).children(this.selectorContent).fadeOut(300);
+
       });
     });
   }

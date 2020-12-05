@@ -28,8 +28,5 @@ require("custom/imgUploader")
 require("custom/postStatus")
 require("custom/slideToggle")
 
-// /posts
-require("custom/postImg")
-
 // Enable jQuery in the .js.erb file
 global.$ = jQuery;

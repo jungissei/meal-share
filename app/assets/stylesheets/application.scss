@@ -72,6 +72,16 @@ main {
   margin-top: 2em;
 }
 
+.alert.position-fixed {
+  top: 44px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1;
+  max-width: 730px;
+  width: calc(100% - 30px);
+}
+
 /*header
 ------------------------------------------------------*/
 .header {
@@ -834,6 +844,7 @@ footer {
 
     #{&}__img {
       width: 100%;
+      padding-top: 100%;
       position: relative;
       overflow: hidden;
       border-radius: 15px;
@@ -882,6 +893,7 @@ footer {
 .post-card-user {
   display: flex;
   align-items: center;
+  width: 100%;
 
   @at-root {
     #{&}__follow {
@@ -929,6 +941,40 @@ footer {
       font-size: 0.8em;
       line-height: 1.4;
       color: theme-color-level(dark, -8);
+    }
+
+    #{&}__menu {
+      margin-left: auto;
+    }
+  }
+}
+
+.post-card-menu {
+  align-self: stretch;
+  display: flex;
+  position: relative;
+
+  @at-root {
+    #{&}__btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    #{&}__content {
+      position: absolute;
+      top: 1.5em;
+      width: 4em;
+      left: -2.5em;
+      padding: 0.25em;
+      text-align: center;
+      border-radius: 10px;
+      font-size: 0.9em;
+
+      a {
+        display: block;
+      }
     }
   }
 }
@@ -1120,75 +1166,91 @@ footer {
   }
 }
 
-/*simple
+/*post-update
 ------------------------------------------------------*/
-.simple {
+.post-update {
+  @at-root {
+    #{&}__row {
+      &:not(:last-child) {
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
+
+/*post-status
+------------------------------------------------------*/
+.post-status {
   display: flex;
-  text-decoration: none;
-  color: black !important;
-  transition: background-color 0.3s linear;
+  position: relative;
 
-  &:not(:last-of-type) {
-    border-bottom: 1px solid #ccc;
-  }
+  @at-root {
+    #{&}__cur {
+      margin-left: auto;
+      color: cornflowerblue;
+      border: 1px solid #fff;
+      font-size: 0.9em;
+      cursor: pointer;
+      padding: 0.25em 0.5em;
 
-  &:hover {
-    background-color: #eee;
-  }
+      &:hover {
+        color: rgba(100, 148, 237, 0.726);
+        border: 1px solid rgba(100, 148, 237, 0.726);
+      }
+    }
 
-  > div {
-    padding: 0.5em;
-  }
+    #{&}__title {
+      padding: 0.25em 0.5em;
+    }
 
-  .simple__left {
-    width: 30%;
-    position: relative;
-  }
+    #{&}__modal {
+      background-color: white;
+      position: absolute;
+      border-radius: 10px;
+      border: 1px solid theme-color(light);
+      top: 2em;
+      right: 0;
+      padding: 1em;
+      width: 280px;
+      max-width: 415px;
+      z-index: 1;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
 
-  .simple__right {
-    width: 70%;
-  }
+    #{&}__title {
+      font-size: 0.9em;
+    }
 
-  .simple__thumb {
-    position: relative;
-    overflow: hidden;
-    height: 55px;
-
-    img {
+    #{&}__label {
       width: 100%;
-      object-fit: cover;
+      border-radius: 15px;
+      padding: 1em 0.5em;
+
+      &:hover {
+        background-color: theme-color-level(light, 1);
+      }
+    }
+
+    #{&}__radio {
+      font-weight: bold;
+      color: #444;
+      line-height: 1;
+    }
+
+    #{&}__detail {
+      font-size: 0.9em;
+      color: #444;
+      margin-left: 1.4em;
     }
   }
+}
 
-  .simple__rank-num {
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 50%;
-    width: 28px;
-    text-align: center;
-
-    &.simple__rank-num-1 {
-      background-color: #f5d100;
-    }
-    &.simple__rank-num-2 {
-      background-color: #bdc3c9;
-    }
-    &.simple__rank-num-3 {
-      background-color: #9f7a46;
-    }
-  }
-
-  .simple__title {
-    font-size: 0.9em;
-    height: 3.6em;
-    overflow: hidden;
-  }
-
-  .simple__like-num {
-    font-size: 0.8em;
-    color: #666;
-  }
+/*block-white
+------------------------------------------------------*/
+.block-white {
+  background-color: white;
+  border-radius: 15px;
+  padding: 1em;
 }
 
 /*pagenation
@@ -1370,6 +1432,152 @@ footer {
   @at-root {
     #{&}__btn {
       display: block;
+    }
+  }
+}
+
+/*user-card
+------------------------------------------------------*/
+.user-card {
+  padding: 1em 1em 0.5em 1em;
+  background-color: white;
+  border-radius: 10px;
+  display: block;
+  margin-bottom: 1em;
+
+  @at-root {
+    #{&}__body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #{&}__header {
+      width: 50px;
+    }
+
+    #{&}__main {
+      width: calc(100% - 50px);
+      padding: 0 0.5em;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    #{&}__main-row {
+      text-align: center;
+    }
+
+    #{&}__footer {
+      width: 100%;
+      display: flex;
+      padding-top: 0.5em;
+    }
+
+    #{&}__image {
+      width: 100%;
+      position: relative;
+      padding-top: 50%;
+      padding-bottom: 50%;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        max-width: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+      }
+    }
+
+    #{&}__username {
+      color: theme-color-level(dark, -2.5);
+      font-size: 0.9em;
+      font-weight: bold;
+      width: calc(100% - 60px);
+      line-height: 44px;
+    }
+
+    #{&}__count {
+      font-weight: bold;
+      line-height: 1.4;
+    }
+
+    #{&}__count-name {
+      line-height: 1;
+      font-size: 0.85em;
+      color: theme-color-level(dark, -1.5);
+    }
+
+    #{&}__follow {
+      width: 60px;
+      margin-right: 1em;
+      line-height: 44px;
+      height: 44px;
+    }
+
+    @include media-breakpoint-up(md) {
+      #{&}__header {
+        width: 200px;
+      }
+
+      #{&}__main {
+        width: calc(100% - 200px);
+      }
+
+      #{&}__username {
+        font-size: 1.3em;
+        overflow: hidden;
+      }
+
+      #{&}__count {
+        line-height: 1.7;
+        font-size: 1.7em;
+      }
+
+      #{&}__count-name {
+        line-height: 1;
+        font-size: 1.2em;
+      }
+    }
+  }
+}
+
+/*nav-menu
+------------------------------------------------------*/
+.nav-menu {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+
+  @at-root {
+    #{&}__item {
+      &:not(:last-child) {
+        padding-right: 1em;
+      }
+    }
+
+    #{&}__link {
+      padding: 1em 2em;
+      background-color: theme-color-level(light, 1);
+      border-radius: 20px;
+      font-weight: bold;
+
+      &.is_active {
+        color: theme-color(primary) !important;
+        background-color: theme-color-level(primary, -8) !important;
+      }
+
+      &:hover {
+        text-decoration: none;
+        background-color: theme-color-level(light, 2);
+      }
     }
   }
 }

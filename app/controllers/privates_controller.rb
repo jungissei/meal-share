@@ -1,6 +1,7 @@
 class PrivatesController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_user, only: [:index]
+  before_action :set_ranks, only: [:index]
   before_action :authenticate_current_user, only: [:index]
 
   # GET /privates
@@ -17,8 +18,9 @@ class PrivatesController < ApplicationController
       @user = User.find(params[:user_id])
     end
 
-    def set_user
-      @user = User.find(params[:user_id])
+    # Get the 3 most-liked public posts in order
+    def set_ranks
+      @rank_posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(3)
     end
 
     def authenticate_current_user
