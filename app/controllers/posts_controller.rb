@@ -1,14 +1,20 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_ranks, only: [:show, :index, :ranking, :search]
 
   # GET /posts
   # GET /posts.json
   def index
-    user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
-    user_ids.push(current_user.id)
-    @posts = Post.where(user_id: user_ids).status_public.order(created_at: :desc).page(params[:page])
+    if user_signed_in?
+      user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
+      user_ids.push(current_user.id)
+      @posts = Post.where(user_id: user_ids).status_public.order(created_at: :desc).page(params[:page])
+
+      return
+    end
+
+    @posts = Post.status_public.order(created_at: :desc).page(params[:page])
   end
 
   # GET /posts/1
