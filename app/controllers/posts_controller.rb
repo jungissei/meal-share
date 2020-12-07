@@ -84,15 +84,22 @@ class PostsController < ApplicationController
   end
 
   def ranking
-    user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
-    user_ids.push(current_user.id)
     @posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(10)
   end
 
   def search
-    user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
-    user_ids.push(current_user.id)
-    @posts = Post.where(user_id: user_ids).status_public.order(created_at: :desc).page(params[:page])
+    unless (query = params[:q]).blank?
+      @keywords = query[:title_or_content_cont_any].split(/\p{blank}/)
+      @keywords.delete('')
+
+      @q = Post.status_public.ransack(title_or_content_cont_any: @keywords)
+      @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+
+      return
+    end
+
+    @q = Post.status_public.ransack(:title_or_content_cont_any)
+    @posts = Post.status_public.order(created_at: :desc).page(params[:page])
   end
 
   private

@@ -66,3 +66,5 @@ gem 'fog-aws'
 gem 'kaminari'
 
 gem 'rack-attack'
+
+gem 'ransack'
