@@ -1,0 +1,23 @@
+<% if user_signed_in? && current_user != post.user %>
+  <div class="post-card-user__follow">
+    <%= render partial: 'relationships/follow', locals: { user: post.user } %>
+  </div>
+<% end %>
+<%= link_to user_path(post.user), class: 'post-card-user__img' do %>
+  <%= image_tag post.user.image? ? post.user.image.to_s: 'nophoto.jpg' %>
+<% end %>
+<div class="post-card-user__other">
+  <%= link_to user_path(post.user), class: 'post-card-user__name' do %>
+    <%= post.user.name %>
+  <% end %>
+  <div class="post-card-user__date"><%= l post.created_at, format: :short %></div>
+</div>
+<% if user_signed_in? && current_user == post.user && current_page?(post_path(post)) %>
+  <div class="post-card-user__menu post-card-menu modal-area">
+    <div class="modal-area__btn post-card-menu__btn"><i class="fas fa-ellipsis-h"></i></div>
+    <div class="modal-area__content post-card-menu__content shadow" style="display:none;">
+      <%= link_to '編集', edit_post_path(post) %>
+      <%= link_to '削除', post_path(post), method: :delete %>
+    </div>
+  </div>
+<% end %>

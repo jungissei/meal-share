@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :likes, only: [:create, :destroy]
+
+    collection do
+      get 'ranking'
+      get 'search'
+    end
+
     resources :comments, only: [:create, :destroy]
   end
 

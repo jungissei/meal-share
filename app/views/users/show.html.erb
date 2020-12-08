@@ -1,32 +1,39 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
 <div class="container">
-  <div class="row mt-3 mb-3">
-    <div class="col-12 col-lg-3">
+  <div class="row">
+    <div class="col-12 col-lg-8 mr-auto ml-auto">
       <%= render partial: 'users/user', locals: { user: @user, relationship: @relationship, posts: @user.posts.status_public } %>
-    </div>
-    <div class="col-12 col-lg-9 m-auto">
+
       <% if user_signed_in? && current_user == @user %>
-        <ul class="nav nav-tabs mb-3">
-          <li class="nav-item">
-            <%= link_to '公開', user_path(@user), class:'nav-link active' %>
+        <ul class="nav-menu">
+          <li class="nav-menu__item">
+            <%= link_to user_path(@user), class:'nav-menu__link is_active' do %>
+              <i class="fas fa-globe"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>
+            <% end %>
           </li>
-          <li class="nav-item">
-            <%= link_to '非公開', user_privates_path(@user), class:'nav-link' %>
+          <li class="nav-menu__item">
+            <%= link_to user_privates_path(@user), class:'nav-menu__link' do %>
+              <i class="fas fa-unlock-alt"></i> <%= I18n.t('activerecord.attributes.post.statuses.private') %>
+            <% end %>
           </li>
         </ul>
+        <h2 class="title-secondary"><i class="fas fa-globe text-primary"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>記事一覧</h2>
       <% end %>
-      <% if @posts.count %>
-        <% if user_signed_in? && current_user == @user %>
-          <ul class="li-asterisk fs-0-9e"><li>すべての人に公開される記事です。</li></ul>
-          <div class="fs-0-9e mb-3">投稿数：<%= @posts.count %></div>
-        <% end %>
-        <div class="row row-cols-1 row-cols-sm-2 g-3 mb-5">
+        <div class="row">
           <% @posts.each do |post| %>
-            <%= render 'posts/card', post:post %>
+            <div class="col-12 col-md-6">
+              <%= render 'posts/post-card', post: post %>
+            </div>
           <% end %>
         </div>
         <%= paginate @posts %>
-      <% else %>
-        <p class="text-center">記事はありません。</p>
-      <% end %>
+    </div>
   </div>
 </div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>

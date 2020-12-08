@@ -1,11 +1,28 @@
-<div class="comment-id-<%= comment.id %>">
-  <div class="d-flex align-items-center">
-    <%= render partial: 'user', locals: { user: comment.user } %>
-    <small class="color-text-l-gray ml-auto"><%= l comment.created_at %></small>
+<div class="post-comment post-comment-<%= comment.id %>">
+  <div class="post-comment__user">
+    <%= link_to user_path(comment.user) do %>
+      <%= image_tag comment.user.image? ? comment.image.to_s: 'nophoto.jpg' %>
+    <% end %>
   </div>
-  <div><%= comment.content %></div>
+  <div class="post-comment__body">
+    <div class="post-comment__content">
+      <div>
+        <%= link_to user_path(comment.user), class:'post-comment__content-username' do %>
+          @<%= comment.user.username %>
+        <% end %>
+      </div>
+      <div><%= comment.content %></div>
+    </div>
+    <div class="post-comment__date">
+      <%= l comment.created_at %>
+    </div>
+  </div>
   <% if current_user == comment.user %>
-    <small class="text-right d-block"><%= link_to '削除', post_comment_path(post, comment), method: :delete, remote: true %></small>
+    <div class="post-comment__delete modal-area">
+      <div class="modal-area__btn"><i class="fas fa-ellipsis-h"></i></div>
+      <div class="modal-area__content post-comment__delete-content shadow" style="display:none;">
+        <%= link_to '削除', post_comment_path(post, comment), method: :delete, remote: true %>
+      </div>
+    </div>
   <% end %>
-  <hr>
 </div>

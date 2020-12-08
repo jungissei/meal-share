@@ -4,22 +4,6 @@
 
 @import "./variables";
 
-.post-cats {
-  display: flex;
-  flex-wrap: wrap;
-
-  .post-cats__name {
-    display: flex;
-    align-items: center;
-    background-color: #eee;
-    color: #666;
-    padding: 4px 8px;
-    border-radius: 4px;
-    margin-bottom: 4px;
-    font-size: 0.8em;
-  }
-}
-
 .scroll {
   position: relative;
   height: 250px;
@@ -28,77 +12,4 @@
   border: 1px solid #f0f0f0;
   padding: 1rem;
   margin-top: 1rem;
-}
-
-.post-update {
-  border: 1px solid #f0f0f0;
-  padding: 1rem;
-  margin-top: 1rem;
-  @at-root {
-    #{&}__submit-wrap {
-      margin-bottom: 0.5em;
-    }
-  }
-}
-
-.post-status {
-  display: flex;
-  position: relative;
-
-  @at-root {
-    #{&}__cur {
-      margin-left: auto;
-      color: cornflowerblue;
-      border: 1px solid #fff;
-      font-size: 0.9em;
-      cursor: pointer;
-      padding: 0.25em 0.5em;
-
-      &:hover {
-        color: rgba(100, 148, 237, 0.726);
-        border: 1px solid rgba(100, 148, 237, 0.726);
-      }
-    }
-
-    #{&}__title {
-      padding: 0.25em 0.5em;
-    }
-
-    #{&}__modal {
-      background-color: white;
-      position: absolute;
-      border: 1px solid #666;
-      top: 2em;
-      right: 0;
-      padding: 1em;
-      width: 100%;
-      max-width: 415px;
-      z-index: 1;
-      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-
-      @include mq("lg") {
-        width: 260px;
-      }
-    }
-
-    #{&}__title {
-      font-size: 0.9em;
-    }
-
-    #{&}__label:not(:last-child) {
-      margin-bottom: 1em;
-    }
-
-    #{&}__radio {
-      font-weight: bold;
-      color: #444;
-      line-height: 1;
-    }
-
-    #{&}__detail {
-      font-size: 0.9em;
-      color: #444;
-      margin-left: 1.4em;
-    }
-  }
 }

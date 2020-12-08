@@ -1,0 +1,52 @@
+<div class="header">
+  <div class="header__wrap shadow-sm">
+    <div class="header__inner">
+      <div class="header__left">
+        <%= link_to 'M', posts_path, class: 'header-logo' %>
+      </div>
+
+      <div class="header__center">
+        <%= link_to posts_path, class: "header-icon#{ ' is_active' if current_page?(posts_path)}" do %>
+          <i class="fas fa-home"></i>
+          <span class="header-icon__name is_show">HOME</span>
+        <% end %>
+        <%= link_to search_posts_path, class: "header-icon#{ ' is_active' if current_page?(search_posts_path)}" do %>
+          <i class="fas fa-search"></i>
+          <span class="header-icon__name is_show">探す</span>
+        <% end %>
+      </div>
+
+      <div class="header__right">
+        <%= link_to user_path(current_user), class: "header-user#{ ' is_active' if current_page?(user_path(current_user))}" do %>
+          <div class="header-user__img">
+            <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
+          </div>
+          <div class="header-user__name">
+            <%= current_user.name %>
+          </div>
+        <% end %>
+
+        <%= link_to new_post_path, class: "header-icon-round header__post#{ ' is_active' if current_page?(new_post_path)}" do %>
+          <i class="fas fa-edit"></i>
+          <span class="header-icon-round__name is_show">投稿する</span>
+        <% end %>
+
+        <%= link_to notifications_path, class: "header-icon-round header-notifications#{ ' is_active' if current_page?(notifications_path)}" do %>
+          <i class="fas fa-bell"></i>
+          <span class="header-icon-round__name is_show">通知</span>
+          <% if unchecked_notifications.any? %>
+            <div class="header-notifications__new"></div>
+          <% end %>
+        <% end %>
+
+        <span class="header-icon-round header__account modal-area">
+          <span class="modal-area__btn">
+            <i class="fas fa-sort-down"></i>
+            <span class="header-icon-round__name is_show">アカウント</span>
+          </span>
+          <%= render partial: 'layouts/header-account-menu' %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

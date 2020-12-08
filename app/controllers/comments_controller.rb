@@ -6,17 +6,13 @@ class CommentsController < ApplicationController
   before_action :set_ranks, only: [:create]
 
   def create
-    @comment = current_user.comments.build(comment_params)
-    @comment.post_id = params[:post_id]
-    @post = @comment.post
+    @post = Post.find(params[:post_id])
 
-    if @comment.save
-      @post.create_notification_comment!(current_user, @comment.id)
-    else
-      @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
-      @comments = @post.comments
-      render template: 'posts/show'
-    end
+    @comment = @post.comments.build(comment_params)
+    @comment.user_id = current_user.id
+    @comment.save
+    @post.create_notification_comment!(current_user, @comment.id)
+
   end
 
   def destroy
@@ -40,6 +36,6 @@ class CommentsController < ApplicationController
     end
 
     def set_ranks
-      @rank_posts = Like.create_all_ranks
+      @rank_posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(3)
     end
 end

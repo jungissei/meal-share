@@ -1,0 +1,36 @@
+<div id="post-<%= post.id %>" class="post-card shadow-sm">
+  <div class="post-card__header">
+    <div class="post-card-user">
+      <%= render partial: 'posts/post-user', locals: { post: post } %>
+    </div>
+  </div>
+  <%= link_to post, class: 'post-card__body' do %>
+    <div class="post-card__title">
+      <%= '非公開:' if post.status_private? %>
+      <%= post.title %>
+    </div>
+    <div class="post-card__img">
+      <%= image_tag post.image.to_s %>
+    </div>
+    <% if post.likes.count %>
+    <div class="post-card__count">
+      <span class="post-card-count-like"><i class="fas fa-thumbs-up"></i></span>
+      <%= post.likes.count %>
+    </div>
+    <% end %>
+  <% end %>
+  <div class="post-card__footer">
+    <div class="post-card__row">
+      <% if user_signed_in? %>
+        <div class="post-card__act">
+          <%= render partial: 'likes/like', locals: { post: post } %>
+        </div>
+      <% end %>
+      <div class="post-card__act">
+        <%= link_to "https://twitter.com/share?ref_src=twsrc%5Etfw&url=#{url_for(protocol: ENV['WEB_PROTOCOL'], host: ENV['WEB_HOST'])}&text=#{post.title}&hashtags=MealShare", target:'_blank' do %>
+          <i class="fab fa-twitter"></i> Tweet
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

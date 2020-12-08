@@ -1,11 +1,19 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_ranks, only: [:show, :index]
+  before_action :set_ranks, only: [:show, :index, :ranking, :search]
 
   # GET /posts
   # GET /posts.json
   def index
+    if user_signed_in?
+      user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
+      user_ids.push(current_user.id)
+      @posts = Post.where(user_id: user_ids).status_public.order(created_at: :desc).page(params[:page])
+
+      return
+    end
+
     @posts = Post.status_public.order(created_at: :desc).page(params[:page])
   end
 
@@ -18,12 +26,7 @@ class PostsController < ApplicationController
       end
     end
 
-    if user_signed_in?
-      @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
-      @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @post.user)
-    end
-
-    @comment = Comment.new
+    @comment_new = Comment.new
     @comments = @post.comments
   end
 
@@ -84,6 +87,25 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: '投稿を削除しました。' }
       format.json { head :no_content }
     end
+  end
+
+  def ranking
+    @posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(10)
+  end
+
+  def search
+    unless (query = params[:q]).blank?
+      @keywords = query[:title_or_content_cont_any].split(/\p{blank}/)
+      @keywords.delete('')
+
+      @q = Post.status_public.ransack(title_or_content_cont_any: @keywords)
+      @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+
+      return
+    end
+
+    @q = Post.status_public.ransack(:title_or_content_cont_any)
+    @posts = Post.status_public.order(created_at: :desc).page(params[:page])
   end
 
   private

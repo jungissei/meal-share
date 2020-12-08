@@ -10,15 +10,16 @@
             <tr>
               <td>
                 <div class="table-form__field-name mb-2"><%= f.label :image, 'ユーザー画像' %></div>
-                <div class="form-image-uploader">
+
+                <div class="form-image-uploader mb-3">
                   <% if @user.image.present? %>
-                    <div class="form-image-uploader__saved-img text-center">
+                    <div class="form-image-uploader__saved-img">
                       <span class="form-image-uploader__saved-img-inner">
                         <%= image_tag @user.image.to_s %>
                       </span>
                     </div>
                     <div class="block-toggle">
-                      <div class="block-toggle__press text-center">
+                      <div class="block-toggle__press">
                         <div class="block-toggle__press-btn btn btn-outline-secondary">
                           <i class="fas fa-arrow-circle-down"></i> 画像を変更する
                         </div>
@@ -27,23 +28,23 @@
 
                         <div class="form-image-uploader__flex">
                           <div class="form-image-uploader__col-preview">
-                            <label for="user_image" class="form-image-uploader__preview">
+                            <label for="post_image" class="form-image-uploader__preview">
                               <%= image_tag 'nophoto.jpg', class: 'form-image-uploader__preview-img' %>
                             </label>
                           </div>
                           <div class="form-image-uploader__col-input">
                             <div class="input-group">
-                              <div class="form-file">
-                                <%= f.file_field :image, class:'form-file-input form-image-uploader__save' %>
+                              <div class="custom-file">
+                                <%= f.file_field :image, class:'custom-file-input form-image-uploader__save' %>
                                 <%= f.hidden_field :image_cache, class:'form-image-uploader__cache' %>
 
-                                <label class="form-file-label" for="user_image">
-                                  <span class="form-file-text form-image-uploader__label">画像選択...</span>
-                                  <span class="form-file-button">参照</span>
+                                <label class="custom-file-label" for="post_image" data-browse="参照">
+                                  <span class="form-image-uploader__label">画像選択...</span>
                                 </label>
-
                               </div>
-                              <span class="input-group-text form-image-uploader__cancel">取消</span>
+                              <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-dark reset form-image-uploader__cancel">取消</button>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -51,30 +52,34 @@
                       </div>
                     </div>
                   <% else %>
+
                     <div class="form-image-uploader__flex">
                       <div class="form-image-uploader__col-preview">
-                        <label for="user_image" class="form-image-uploader__preview">
+                        <label for="post_image" class="form-image-uploader__preview">
                           <%= image_tag 'nophoto.jpg', class: 'form-image-uploader__preview-img' %>
                         </label>
                       </div>
                       <div class="form-image-uploader__col-input">
                         <div class="input-group">
-                          <div class="form-file">
-                            <%= f.file_field :image, class:'form-file-input form-image-uploader__save' %>
+                          <div class="custom-file">
+                            <%= f.file_field :image, class:'custom-file-input form-image-uploader__save' %>
                             <%= f.hidden_field :image_cache, class:'form-image-uploader__cache' %>
 
-                            <label class="form-file-label" for="user_image">
-                              <span class="form-file-text form-image-uploader__label">画像選択...</span>
-                              <span class="form-file-button">参照</span>
+                            <label class="custom-file-label" for="post_image" data-browse="参照">
+                              <span class="form-image-uploader__label">画像選択...</span>
                             </label>
-
                           </div>
-                          <span class="input-group-text form-image-uploader__cancel">取消</span>
+                          <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-dark reset form-image-uploader__cancel">取消</button>
+                          </div>
                         </div>
                       </div>
                     </div>
+
                   <% end %>
                 </div>
+
+
               </td>
             </tr>
             <tr>
