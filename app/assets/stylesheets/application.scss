@@ -82,6 +82,10 @@ main {
   width: calc(100% - 30px);
 }
 
+.custom-file-label {
+  overflow: hidden;
+}
+
 /*header
 ------------------------------------------------------*/
 .header {

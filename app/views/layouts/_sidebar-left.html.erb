@@ -18,7 +18,7 @@
       <div class="sidebar-left-item-user__img">
         <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
       </div>
-      <span class="sidebar-left-item-user__name">@<%= current_user.username %></span>
+      <span class="sidebar-left-item-user__name"><%= current_user.name %></span>
     <% end %>
   </div>
 </div>

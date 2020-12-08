@@ -22,7 +22,7 @@
             <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
           </div>
           <div class="header-user__name">
-            @<%= current_user.username %>
+            <%= current_user.name %>
           </div>
         <% end %>
 

@@ -8,7 +8,7 @@
 <% end %>
 <div class="post-card-user__other">
   <%= link_to user_path(post.user), class: 'post-card-user__name' do %>
-    @<%= post.user.username %>
+    <%= post.user.name %>
   <% end %>
   <div class="post-card-user__date"><%= l post.created_at, format: :short %></div>
 </div>

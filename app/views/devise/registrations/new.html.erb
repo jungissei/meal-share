@@ -7,6 +7,14 @@
       <tbody>
         <tr>
           <td>
+            <div class="table-form__field-name mb-2 require"><%= f.label :name, 'ハンドルネーム' %></div>
+            <div class="form-file custom-file">
+              <%= f.text_field :name, class:'form-control', placeholder:'ハンドルネーム' %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <div class="table-form__field-name mb-2 require"><%= f.label :username, 'ユーザーID' %></div>
             <div class="form-file custom-file">
               <%= f.text_field :username, class:'form-control', placeholder:'ユーザーID' %>
