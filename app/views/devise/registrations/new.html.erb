@@ -1,13 +1,21 @@
 <div class="container">
   <%= form_with model: @user, url: user_registration_path, id:'new_user', class:'form-signin', method: :post, local: true do |f| %>
     <h1 class="title-primary text-center">会員登録</h1>
-    
+
     <%= render 'devise/shared/error_messages', resource: resource %>
     <table class="table table-striped table-form">
       <tbody>
         <tr>
           <td>
-            <div class="table-form__field-name mb-2"><%= f.label :username, 'ユーザーID' %></div>
+            <div class="table-form__field-name mb-2 require"><%= f.label :name, 'ハンドルネーム' %></div>
+            <div class="form-file custom-file">
+              <%= f.text_field :name, class:'form-control', placeholder:'ハンドルネーム' %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="table-form__field-name mb-2 require"><%= f.label :username, 'ユーザーID' %></div>
             <div class="form-file custom-file">
               <%= f.text_field :username, class:'form-control', placeholder:'ユーザーID' %>
             </div>
@@ -18,25 +26,6 @@
             <div class="table-form__field-name mb-2 require"><%= f.label :email, 'メールアドレス' %></div>
             <div class="form-file custom-file">
               <%= f.email_field :email, autofocus: true, autocomplete: 'email', class:'form-control', placeholder:'メールアドレス' %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="table-form__field-name mb-2"><%= f.label :image, 'ユーザー画像' %></div>
-            <div class="form-file custom-file">
-              <%= f.file_field :image, class:'form-file-input custom-file-input' %>
-              <%= f.label :image, class:'form-file-label custom-file-label' do %>
-                <span class="form-file-text">画像を選択</span>
-              <% end %>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="table-form__field-name mb-2"><%= f.label :name, 'ハンドルネーム' %></div>
-            <div class="form-file custom-file">
-              <%= f.text_field :name, class:'form-control', placeholder:'ハンドルネーム' %>
             </div>
           </td>
         </tr>

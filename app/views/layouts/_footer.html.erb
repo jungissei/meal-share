@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="container__break bg-dark">
+    <div class="footer">
+      <div class="footer-logo">
+        <%= link_to 'Meal Share', user_signed_in? ? posts_path : root_path %>
+      </div>
+      <div class="footer-copyright">
+        ©2020
+        <%= link_to 'Meal Share', user_signed_in? ? posts_path : root_path %>
+        Allright Reserved.
+      </div>
+    </div>
+  </div>
+</div>

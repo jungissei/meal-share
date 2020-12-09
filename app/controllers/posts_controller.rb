@@ -1,23 +1,33 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :set_ranks, only: [:show, :index]
+  before_action :set_ranks, only: [:show, :index, :ranking, :search]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.order(created_at: :desc).page(params[:page])
+    if user_signed_in?
+      user_ids = Relationship.where(user_id: current_user.id).pluck(:follow_id)
+      user_ids.push(current_user.id)
+      @posts = Post.where(user_id: user_ids).status_public.order(created_at: :desc).page(params[:page])
+
+      return
+    end
+
+    @posts = Post.status_public.order(created_at: :desc).page(params[:page])
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @comment = Comment.new
-    @comments = @post.comments
-
-    if user_signed_in?
-      @like = Like.find_by(post_id: @post.id, user_id: current_user.id)
+    if @post.status_private? && @post.user != current_user
+      respond_to do |format|
+        format.html { redirect_to posts_path, notice: 'このページにはアクセスできません' }
+      end
     end
+
+    @comment_new = Comment.new
+    @comments = @post.comments
   end
 
   # GET /posts/new
@@ -29,11 +39,13 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    if @post.user == current_user
-      @post.image.cache! unless @post.image.blank?
-    else
-      redirect_back(fallback_location: root_path)
+    unless @post.user == current_user
+      respond_to do |format|
+        format.html { redirect_to posts_path, notice: '他のユーザーの記事編集ページにはアクセスできません' }
+      end
     end
+
+    @post.image.cache! unless @post.image.blank?
   end
 
   # POST /posts
@@ -77,6 +89,25 @@ class PostsController < ApplicationController
     end
   end
 
+  def ranking
+    @posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(10)
+  end
+
+  def search
+    unless (query = params[:q]).blank?
+      @keywords = query[:title_or_content_cont_any].split(/\p{blank}/)
+      @keywords.delete('')
+
+      @q = Post.status_public.ransack(title_or_content_cont_any: @keywords)
+      @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page])
+
+      return
+    end
+
+    @q = Post.status_public.ransack(:title_or_content_cont_any)
+    @posts = Post.status_public.order(created_at: :desc).page(params[:page])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -89,11 +120,14 @@ class PostsController < ApplicationController
         :title,
         :content,
         :image,
+        :status,
         {:cat_ids => []}
       )
     end
 
+    # Get the 3 most-liked public posts in order
     def set_ranks
-      @rank_posts = Like.create_all_ranks
+      @rank_posts = Post.status_public.joins(:likes).group(:post_id).order('count(likes.post_id) desc').limit(3)
     end
+
 end

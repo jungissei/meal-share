@@ -1,0 +1,3 @@
+$('.post-comment-<%= @comment.id %>').fadeOut().queue(function() {
+  this.remove();
+});

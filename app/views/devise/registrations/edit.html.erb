@@ -10,13 +10,76 @@
             <tr>
               <td>
                 <div class="table-form__field-name mb-2"><%= f.label :image, 'ユーザー画像' %></div>
-                <div class="form-file custom-file">
-                  <%= f.file_field :image, class:'form-file-input custom-file-input' %>
-                  <%= f.hidden_field :image_cache %>
-                  <%= f.label :image, class:'form-file-label custom-file-label' do %>
-                    <span class="form-file-text">画像を選択</span>
+
+                <div class="form-image-uploader mb-3">
+                  <% if @user.image.present? %>
+                    <div class="form-image-uploader__saved-img">
+                      <span class="form-image-uploader__saved-img-inner">
+                        <%= image_tag @user.image.to_s %>
+                      </span>
+                    </div>
+                    <div class="block-toggle">
+                      <div class="block-toggle__press">
+                        <div class="block-toggle__press-btn btn btn-outline-secondary">
+                          <i class="fas fa-arrow-circle-down"></i> 画像を変更する
+                        </div>
+                      </div>
+                      <div class="block-toggle__content" style="display:none;">
+
+                        <div class="form-image-uploader__flex">
+                          <div class="form-image-uploader__col-preview">
+                            <label for="post_image" class="form-image-uploader__preview">
+                              <%= image_tag 'nophoto.jpg', class: 'form-image-uploader__preview-img' %>
+                            </label>
+                          </div>
+                          <div class="form-image-uploader__col-input">
+                            <div class="input-group">
+                              <div class="custom-file">
+                                <%= f.file_field :image, class:'custom-file-input form-image-uploader__save' %>
+                                <%= f.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+
+                                <label class="custom-file-label" for="post_image" data-browse="参照">
+                                  <span class="form-image-uploader__label">画像選択...</span>
+                                </label>
+                              </div>
+                              <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-dark reset form-image-uploader__cancel">取消</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  <% else %>
+
+                    <div class="form-image-uploader__flex">
+                      <div class="form-image-uploader__col-preview">
+                        <label for="post_image" class="form-image-uploader__preview">
+                          <%= image_tag 'nophoto.jpg', class: 'form-image-uploader__preview-img' %>
+                        </label>
+                      </div>
+                      <div class="form-image-uploader__col-input">
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <%= f.file_field :image, class:'custom-file-input form-image-uploader__save' %>
+                            <%= f.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+
+                            <label class="custom-file-label" for="post_image" data-browse="参照">
+                              <span class="form-image-uploader__label">画像選択...</span>
+                            </label>
+                          </div>
+                          <div class="input-group-append">
+                            <button type="button" class="btn btn-outline-dark reset form-image-uploader__cancel">取消</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                   <% end %>
                 </div>
+
+
               </td>
             </tr>
             <tr>

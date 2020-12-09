@@ -1,0 +1,43 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 mr-auto  ml-auto">
+      <%= search_form_for @q, url: '/posts/search', class: 'd-block mb-3' do |f| %>
+        <%= f.search_field :title_or_content_cont_any, class: 'form-control', placeholder: 'キーワードを入力' %>
+
+        <% if !@keywords.nil? %>
+          <h2 class="title-secondary">
+              <% if (keywords = params[:q][:title_or_content_cont_any]).empty? %>
+                <%= f.label :title_or_content_cont_any do %>
+                  <i class="fas fa-search text-primary"></i> キーワードを入力してください。
+                <% end %>
+              <% else %>
+                <i class="fas fa-search text-primary"></i> 検索結果:<%= keywords %>
+              <% end %>
+          </h2>
+        <% end %>
+
+      <% end %>
+
+      <% if @posts.empty? %>
+        <div class="text-center">記事が見つかりませんでした。</div>
+      <% else %>
+        <div class="row">
+          <% @posts.each do |post| %>
+            <div class="col-12 col-lg-6">
+              <%= render 'posts/post-card', post: post %>
+            </div>
+          <% end %>
+        </div>
+        <%= paginate @posts %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>

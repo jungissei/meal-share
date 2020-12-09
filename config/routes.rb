@@ -4,6 +4,12 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :likes, only: [:create, :destroy]
+
+    collection do
+      get 'ranking'
+      get 'search'
+    end
+
     resources :comments, only: [:create, :destroy]
   end
 
@@ -14,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :relationships, only: [:create, :destroy]
+    resources :privates, only: [:index]
   end
 
   resources :notifications, only: :index

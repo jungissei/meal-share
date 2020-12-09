@@ -1,116 +1,17 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
 <div class="container">
   <div class="row">
-    <div class="col-12 col-lg-8">
-      <div class="d-flex align-items-center">
-        <%= render 'users/user-info', user:@post.user %>
-        <small class="color-text-l-gray"><%= l @post.created_at, format: :short %>に投稿</small>
-        <% if current_user == @post.user %>
-          <div class="ml-auto">
-            <div class="btn-group">
-              <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <i class="fas fa-cog"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-right p-3">
-                <li class="mb-2">
-                  <%= link_to  edit_post_path(@post), class:'ml-auto text-decoration-none' do %>
-                    <i class="fas fa-user" aria-hidden="true"></i>
-                    <span>記事編集</span>
-                  <% end %>
-                </li>
-                <li class="mb-2">
-                  <%= link_to  post_path(@post), class:'ml-auto text-decoration-none', method: :delete do %>
-                    <i class="fas fa-trash-alt"></i>
-                    <span>記事削除</span>
-                  <% end %>
-                </li>
-              </ul>
-            </div>
-          </div>
-        <% end %>
-      </div>
+    <div class="col-12 col-lg-8 mr-auto  ml-auto">
 
+      <%= render partial: 'posts/show-post', locals: { post: @post, comments: @comments, comment_new: @comment_new } %>
 
-      <h1 class="title-primary mt-0"><%= @post.title %></h1>
-
-      <%= render 'cats/post-cats', post:@post %>
-
-      <div><%= image_tag @post.image.to_s %></div>
-      <div><%= @post.content %></div>
-
-      <% if user_signed_in? %>
-        <div class="post-like pb-4">
-          <% if current_user.already_liked?(@post) %>
-            <%= link_to 'Like', post_like_path(@post, @like), method: :delete, class:'post-like__cancel' %>
-          <% else %>
-            <%= link_to 'Like', post_likes_path(@post), method: :post, class:'post-like__enable' %>
-          <% end %>
-          <div class="post-like__num"><%= @post.likes.count %></div>
-        </div>
-      <% end %>
-
-
-      <% if user_signed_in? %>
-        <hr>
-        <div class="d-flex align-items-center">
-          <%= render 'users/user-info', user:@post.user %>
-          <%= render 'relationships/follow_button', user: @post.user %>
-        </div>
-      <% end %>
-
-      <div class="mb-5 mt-5">
-        <%= link_to '戻る', posts_path, class:'btn btn-light m-auto d-block w-50 border' %>
-      </div>
-
-      <h2 class="title-primary"><i class="fas fa-comments mr-2"></i>コメント</h2>
-      <div>
-        <% @comments.each do |comment| %>
-          <div class="d-flex align-items-center">
-            <%= render 'users/user-info', user:comment.user %>
-            <small class="color-text-l-gray ml-auto"><%= l comment.created_at %></small>
-          </div>
-          <div><%= comment.content %></div>
-          <% if current_user == comment.user %>
-            <small class="text-right d-block"><%= link_to '削除', post_comment_path(@post, comment), method: :delete %></small>
-          <% end %>
-          <hr>
-        <% end %>
-      </div>
-
-      <% if user_signed_in? %>
-        <div class="p-3 p-md-5 mb-5 color_bg-l-gray">
-          <div class="d-flex align-items-center">
-            <%= render 'users/user-info', user:current_user %>
-            <span class="font-weight-bold ml-3">投稿する</span>
-          </div>
-          <%= form_with model: [@post, @comment], local: true do |form| %>
-
-            <% if @comment.errors.any? %>
-              <div class="alert alert-danger" role="alert">
-                <h2 class="alert-heading"><%= pluralize(@comment.errors.count, '件のエラー') %>によりコメントが保存されませんでした。</h2>
-                <hr>
-                <ul>
-                  <% @comment.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-            <% end %>
-
-            <div class = 'form-group'>
-              <%= form.text_area :content, class:'form-control mb-3' %>
-            </div>
-            <div class = 'text-right'>
-              <%= form.submit 'コメントする', class:'btn btn-primary' %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-
-
-
-    </div>
-    <div class="col-12 col-lg-4">
-      <%= render 'posts/simple-rank' %>
     </div>
   </div>
 </div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>

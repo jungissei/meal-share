@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 mr-auto ml-auto">
+      <%= render partial: 'users/user', locals: { user: @user, relationship: @relationship, posts: @user.posts.status_public } %>
+
+      <% if user_signed_in? && current_user == @user %>
+        <ul class="nav-menu">
+          <li class="nav-menu__item">
+            <%= link_to user_path(@user), class:'nav-menu__link' do %>
+              <i class="fas fa-globe"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>
+            <% end %>
+          </li>
+          <li class="nav-menu__item">
+            <%= link_to user_privates_path(@user), class:'nav-menu__link is_active' do %>
+              <i class="fas fa-unlock-alt"></i> <%= I18n.t('activerecord.attributes.post.statuses.private') %>
+            <% end %>
+          </li>
+        </ul>
+        <h2 class="title-secondary"><i class="fas fa-unlock-alt text-primary"></i> <%= I18n.t('activerecord.attributes.post.statuses.private') %>記事一覧</h2>
+      <% end %>
+      <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-12 col-md-6">
+          <%= render 'posts/post-card', post: post %>
+        </div>
+      <% end %>
+      </div>
+      <%= paginate @posts %>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>

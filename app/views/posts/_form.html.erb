@@ -1,68 +1,127 @@
 <%= form_with(model: post, local: true) do |form| %>
   <div class="row">
-    <div class="col-12 col-lg-10">
-      <% if post.errors.any? %>
-        <div class="alert alert-danger" role="alert">
-          <h2 class="alert-heading"><%= pluralize(post.errors.count, '件のエラー') %>により投稿が保存されませんでした。</h2>
-          <hr>
-          <ul>
-            <% post.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <div class="field">
-        <%= form.text_field :title, class: 'form-control', placeholder: 'タイトル：料理名、ごはんの名前' %>
-      </div>
-
-      <div class="form-file custom-file mb-3">
-        <%= form.file_field :image, class:'form-file-input custom-file-input' %>
-        <%= form.hidden_field :image_cache %>
-        <%= form.label :image, class:'form-file-label custom-file-label' do %>
-          <span class="form-file-text">料理、ごはんの画像を選択</span>
-        <% end %>
-      </div>
-
-      <div class="field">
-        <%= form.text_area :content, class: 'form-control', placeholder: '美味しいポイントを記入してください。', rows:10 %>
-      </div>
-
-
-    </div>
-    <div class="col-12 col-lg-2">
-      <% if !current_page?(new_post_path) %>
-        <div class="mb-2 text-right">
-          <%= link_to '投稿を確認', @post, class:'btn btn-secondary text-white w-100' %>
-        </div>
-      <% end %>
-
-      <div class="text-right">
-        <%= form.submit('更新', class:'btn btn-dark w-100') %>
-      </div>
-
-
-      <div class="scroll">
-        <h2 class="font-weight-bold border-bottom mb-3">カテゴリ</h2>
-        <div class="cat-group">
-          <%= form.collection_check_boxes(:cat_ids, Cat.where(user_id: current_user.id), :id, :name, include_hidden: true) do |b| %>
-            <div class="form-check">
-              <%= b.check_box(class:'form-check-input') %>
-              <%= b.label(class:'form-check-label') do %>
-                <%= b.text %>
+    <div class="col-12 col-lg-9">
+      <div class="block-white">
+        <% if post.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <h2 class="alert-heading"><%= pluralize(post.errors.count, '件のエラー') %>により投稿が保存されませんでした。</h2>
+            <hr>
+            <ul>
+              <% post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
               <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-image-uploader mb-3">
+          <% if post.image.present? %>
+            <div class="form-image-uploader__saved-img">
+              <span class="form-image-uploader__saved-img-inner">
+                <%= image_tag post.image.to_s %>
+              </span>
             </div>
+            <div class="block-toggle">
+              <div class="block-toggle__press">
+                <div class="block-toggle__press-btn btn btn-outline-secondary">
+                  <i class="fas fa-arrow-circle-down"></i> 画像を変更する
+                </div>
+              </div>
+              <div class="block-toggle__content" style="display:none;">
+
+                <div class="form-image-uploader__flex">
+                  <div class="form-image-uploader__col-preview">
+                    <label for="post_image" class="form-image-uploader__preview">
+                      <%= image_tag 'nophoto.jpg', class: 'form-image-uploader__preview-img' %>
+                    </label>
+                  </div>
+                  <div class="form-image-uploader__col-input">
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <%= form.file_field :image, class:'custom-file-input form-image-uploader__save' %>
+                        <%= form.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+
+                        <label class="custom-file-label" for="post_image" data-browse="参照">
+                          <span class="form-image-uploader__label">画像選択...</span>
+                        </label>
+                      </div>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-dark reset form-image-uploader__cancel">取消</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          <% else %>
+
+            <div class="form-image-uploader__flex">
+              <div class="form-image-uploader__col-preview">
+                <label for="post_image" class="form-image-uploader__preview">
+                  <%= image_tag 'nophoto.jpg', class: 'form-image-uploader__preview-img' %>
+                </label>
+              </div>
+              <div class="form-image-uploader__col-input">
+                <div class="input-group">
+                  <div class="custom-file">
+                    <%= form.file_field :image, class:'custom-file-input form-image-uploader__save' %>
+                    <%= form.hidden_field :image_cache, class:'form-image-uploader__cache' %>
+
+                    <label class="custom-file-label" for="post_image" data-browse="参照">
+                      <span class="form-image-uploader__label">画像選択...</span>
+                    </label>
+                  </div>
+                  <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-dark reset form-image-uploader__cancel">取消</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           <% end %>
         </div>
-        <div class="text-right">
-          <small><%= link_to("新規追加", "/cats/new") %></small>
+
+        <div class="field">
+          <%= form.text_field :title, class: 'form-control', placeholder: 'タイトル：料理名、ごはんの名前' %>
+        </div>
+
+        <div class="field">
+          <%= form.text_area :content, class: 'form-control', placeholder: '美味しいポイントを記入してください。', rows:10 %>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-12 col-lg-3">
+      <div class="block-white">
+        <div class="post-update">
+          <div class="post-update__row">
+            <%= form.submit('更新', class:'btn btn-dark w-100') %>
+          </div>
+          <div class="post-update__row">
+            <div class="post-status">
+              <div class="post-status__title">表示状態</div>
+              <div class="post-status__cur"><%= I18n.t("activerecord.attributes.post.statuses.#{@post.status}") %></div>
+              <div class="post-status__modal" style="display:none;">
+                <%= form.label(:public, for: nil, class:'post-status__label') do %>
+                  <div class="post-status__radio">
+                    <%= form.radio_button :status, :public, class: 'post-status__radio-btn' %>
+                    <i class="fas fa-globe"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>
+                  </div>
+                  <div class="post-status__detail">すべての人に表示されます。</div>
+                <% end %>
+                <%= form.label(:private, for: nil, class:'post-status__label') do %>
+                  <div class="post-status__radio">
+                    <%= form.radio_button :status, :private, class: 'post-status__radio-btn' %>
+                    <i class="fas fa-unlock-alt"></i> <%= I18n.t('activerecord.attributes.post.statuses.private') %>
+                  </div>
+                  <div class="post-status__detail">あなたにだけ表示されます。</div>
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-
-
-
 
     </div>
 

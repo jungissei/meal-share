@@ -1,0 +1,3 @@
+$('.post-comments').append('<%= j(render partial: 'comments/comment', locals: { comment: @comment, post: @post }) %>');
+
+$('#comment_content').val('');

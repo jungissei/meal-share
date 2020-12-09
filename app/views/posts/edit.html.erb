@@ -1,7 +1,7 @@
 <div class="container">
   <h1 class="title-primary">記事編集</h1>
 
-  <%= render 'form', post: @post %>
+  <%= render partial: 'posts/form', locals: { post: @post } %>
   <div class="row">
     <div class="col-12 col-lg-10">
       <div class="mt-5 mb-5 text-center">
