@@ -8,9 +8,9 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-require("/node_modules/jquery/dist/jquery.js");
-require("/node_modules/@fortawesome/fontawesome-free/js/all.js");
-require("/node_modules/bootstrap/dist/js/bootstrap.js");
+require("jquery");
+require("@fortawesome/fontawesome-free/js/all");
+require("bootstrap");
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -30,3 +30,7 @@ require("custom/slideToggle")
 
 // Enable jQuery in the .js.erb file
 global.$ = jQuery;
+
+$(function() {
+  console.log("OK");
+});
