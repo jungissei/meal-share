@@ -14,12 +14,37 @@
  *= require_self
  */
 
-@import "./variables";
+$theme-colors: (
+  "primary": #f6b352,
+  "secondary": #fc913a,
+  "tertiary": #f68655,
+  "quaternary": #4c4c4c,
+);
 
-$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
-@import "@fortawesome/fontawesome-free/scss/fontawesome";
-@import "@fortawesome/fontawesome-free/scss/regular";
-@import "/node_modules/bootstrap/scss/bootstrap";
+/*正三角形
+------------------------------------------------------*/
+@mixin trianglearrow($direction: right, $size: 12, $color: gray) {
+  $set: left;
+
+  @if $direction == left {
+    $set: right;
+  } @else if $direction == top {
+    $set: bottom;
+  } @else if $direction == bottom {
+    $set: top;
+  } @else {
+    $set: left;
+  }
+  $size: round($size / 2);
+
+  width: 0;
+  height: 0;
+  border: $size + px solid transparent;
+  border-#{$set}-color: $color;
+}
+
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../../node_modules//bootstrap/scss/bootstrap.scss";
 
 /*related init
 ------------------------------------------------------*/
@@ -1637,5 +1662,61 @@ footer {
     #{&}__num-3 {
       background-color: #ac6d4d;
     }
+  }
+}
+
+/*block-notifications
+------------------------------------------------------*/
+.block-notifications {
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px dotted #999;
+
+  a {
+    text-decoration: none;
+    color: #333 !important;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .block-notifications__date {
+    color: #666;
+    font-size: 0.9em;
+    text-align: right;
+  }
+}
+
+/*scroll
+------------------------------------------------------*/
+.scroll {
+  position: relative;
+  height: 250px;
+  margin-top: 0.5rem;
+  overflow: auto;
+  border: 1px solid #f0f0f0;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+/*form-signin
+------------------------------------------------------*/
+.form-signin {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: auto;
+
+  #user_login {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  #user_password {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 }

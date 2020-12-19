@@ -9,8 +9,9 @@ require("@rails/activestorage").start()
 require("channels")
 
 require("jquery");
-require("@fortawesome/fontawesome-free/js/all");
-require("bootstrap");
+
+import "../../../node_modules/bootstrap/dist/js/bootstrap.min"
+import "../../../node_modules/@fortawesome/fontawesome-free/js/all"
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -30,7 +31,3 @@ require("custom/slideToggle")
 
 // Enable jQuery in the .js.erb file
 global.$ = jQuery;
-
-$(function() {
-  console.log("OK");
-});
