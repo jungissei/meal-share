@@ -61,7 +61,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 
 gem 'carrierwave'
-gem 'fog-aws'
+gem 'fog'
 
 gem 'kaminari'
 
