@@ -8,9 +8,9 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
-require("/node_modules/jquery/dist/jquery.js");
-require("/node_modules/@fortawesome/fontawesome-free/js/all.js");
-require("/node_modules/bootstrap/dist/js/bootstrap.js");
+import "../../../modules/jquery/dist/jquery"
+import "../../../modules/bootstrap/dist/js/bootstrap"
+import "../../../modules/@fortawesome/fontawesome-free/js/all"
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

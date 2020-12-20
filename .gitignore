@@ -34,7 +34,6 @@ yarn-debug.log*
 
 /public/uploads
 
-
 /docker/nginx/ssl/server.crt
 /docker/nginx/ssl/server.csr
 /docker/nginx/ssl/server.key
