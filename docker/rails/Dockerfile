@@ -26,6 +26,8 @@ EXPOSE 3000
 
 RUN bundle install
 
+RUN bundle exec rails webpacker:install
+
 RUN rm config/webpack/environment.js
 RUN cp config/webpack/webpack.config.js config/webpack/environment.js
 
