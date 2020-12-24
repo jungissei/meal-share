@@ -43,8 +43,8 @@ $theme-colors: (
   border-#{$set}-color: $color;
 }
 
-@import "../../../modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../../modules/bootstrap/scss/bootstrap";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 /*related init
 ------------------------------------------------------*/
