@@ -10,7 +10,7 @@
       <%= post.title %>
     </div>
     <div class="post-card__img">
-      <%= image_tag post.image.to_s %>
+      <%= render partial: 'layouts/img-square', locals: { image: post.image, version: "thumb" } %>
     </div>
     <% if post.likes.count %>
     <div class="post-card__count">

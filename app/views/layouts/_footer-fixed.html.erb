@@ -1,7 +1,7 @@
 <ul class="footer-fixed">
   <li>
     <%= link_to posts_path, class: "footer-fixed-icon#{ ' is_active' if current_page?(posts_path)}" do %>
-      <i class="fas fa-edit"></i>
+      <i class="fas fa-home"></i>
     <% end %>
   </li>
   <li>
@@ -17,7 +17,7 @@
   <li>
     <%= link_to user_path(current_user), class: "footer-fixed-icon footer-fixed-user#{ ' is_active' if current_page?(user_path(current_user))}" do %>
       <span class="footer-fixed-user__inner">
-        <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
+        <%= render partial: 'layouts/img-square', locals: { image: current_user.image, version: "small_thumb" } %>
       </span>
     <% end %>
   </li>

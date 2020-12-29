@@ -16,7 +16,7 @@
   <div class="sidebar-left__row">
     <%= link_to user_path(current_user), class: 'sidebar-left-item-user' do %>
       <div class="sidebar-left-item-user__img">
-        <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
+        <%= render partial: 'layouts/img-square', locals: { image: current_user.image, version: "small_thumb" } %>
       </div>
       <span class="sidebar-left-item-user__name"><%= current_user.name %></span>
     <% end %>

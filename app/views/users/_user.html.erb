@@ -2,7 +2,7 @@
   <div class="user-card__body">
     <div class="user-card__header">
       <div class="user-card__image">
-        <%= image_tag user.image? ? user.image.to_s: 'nophoto.jpg' %>
+        <%= render partial: 'layouts/img-square', locals: { image: user.image, version: "medium_thumb" } %>
       </div>
     </div>
     <div class="user-card__main">
