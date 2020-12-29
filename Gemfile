@@ -68,3 +68,5 @@ gem 'kaminari'
 gem 'rack-attack'
 
 gem 'ransack'
+
+gem "mini_magick"

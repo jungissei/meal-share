@@ -9,7 +9,7 @@
     <div class="carousel-inner">
       <% rank_posts.each.with_index(1) do |post, i| %>
         <%= link_to post, class: "carousel-item sidebar-right-rank__img#{ ' active' if i == 1}" do %>
-          <%= image_tag post.image? ? post.image.to_s: 'nophoto.jpg', class: 'd-block w-100' %>
+          <%= render partial: 'layouts/img-square', locals: { image: post.image, version: "medium_thumb" } %>
           <span class="sidebar-right-rank__num sidebar-right-rank__num-<%= i %>"><%= i %></span>
         <% end %>
       <% end %>

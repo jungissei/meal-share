@@ -4,7 +4,7 @@
   </div>
 <% end %>
 <%= link_to user_path(post.user), class: 'post-card-user__img' do %>
-  <%= image_tag post.user.image? ? post.user.image.to_s: 'nophoto.jpg' %>
+  <%= render partial: 'layouts/img-square', locals: { image: post.user.image, version: "small_thumb" } %>
 <% end %>
 <div class="post-card-user__other">
   <%= link_to user_path(post.user), class: 'post-card-user__name' do %>

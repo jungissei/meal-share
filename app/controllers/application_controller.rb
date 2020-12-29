@@ -9,4 +9,40 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update, keys: [:username, :email, :password, :password_confirmation, :current_password, :image, :image_cache, :name])
     end
 
+
+    # Call the method to get the uploaded image
+    def get_uploaded_image(image, method = "thumb")
+      self.send(method.to_sym, image)
+    end
+    helper_method :get_uploaded_image
+
+    # Returns the value of the src attribute of
+    # the img tag of the thumbnail size image.
+    def thumb(image)
+      unless image.thumb.blank?
+        return image.thumb.url.to_s
+      end
+
+      image.url.to_s
+    end
+
+    # Returns the value of the src attribute of
+    # the img tag for a medium-sized thumbnail image.
+    def medium_thumb(image)
+      unless image.thumb.blank?
+        return image.medium_thumb.url.to_s
+      end
+
+      image.url.to_s
+    end
+
+    # Returns the value of the src attribute
+    # of the img tag for a small-sized thumbnail image.
+    def small_thumb(image)
+      unless image.thumb.blank?
+        return image.small_thumb.url.to_s
+      end
+
+      image.url.to_s
+    end
 end

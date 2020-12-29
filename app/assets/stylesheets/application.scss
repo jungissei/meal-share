@@ -329,55 +329,6 @@ main {
   }
 }
 
-.header-user {
-  display: none;
-  align-items: center;
-  padding: 0 0.5em;
-  padding: 0 1em;
-  border-radius: 25px;
-  line-height: 50px;
-
-  &.is_active {
-    color: theme-color(primary);
-    background-color: theme-color-level(primary, -8);
-
-    &:hover {
-      background-color: theme-color-level(primary, -7);
-    }
-  }
-
-  @at-root {
-    #{&}__img {
-      border-radius: 50%;
-      overflow: hidden;
-      width: 32px;
-      margin-right: 0.5em;
-
-      img {
-        width: 100%;
-        height: 32px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-    }
-
-    #{&}__name {
-      font-size: 0.7em;
-      font-weight: bold;
-      overflow: hidden;
-      width: 8.4em;
-    }
-  }
-
-  @include media-breakpoint-up(lg) {
-    display: flex;
-
-    &:hover {
-      background-color: theme-color-level(light, 0.5);
-    }
-  }
-}
-
 .header-notifications {
   position: relative;
 
@@ -572,8 +523,7 @@ footer {
       border-radius: 50%;
       overflow: hidden;
       display: block;
-      width: 40px;
-      height: 40px;
+      width: 47px;
       position: absolute;
       top: 0;
       right: 0;
@@ -716,7 +666,6 @@ footer {
   @at-root {
     #{&}__img {
       width: 40px;
-      height: 40px;
       overflow: hidden;
       border-radius: 50%;
       margin-right: 15px;
@@ -765,10 +714,8 @@ footer {
   @at-root {
     #{&}__img {
       position: relative;
-
-      img {
-        border-radius: 15px;
-      }
+      border-radius: 15px;
+      overflow: hidden;
     }
 
     #{&}__num {
@@ -876,25 +823,6 @@ footer {
       margin-bottom: 0.5em;
     }
 
-    #{&}__img {
-      width: 100%;
-      padding-top: 100%;
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-
-      img {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-        display: block;
-        width: 100%;
-      }
-    }
-
     #{&}__row {
       padding-top: 0.375em;
       border-top: 1px solid theme-color-level(light, 2);
@@ -902,6 +830,11 @@ footer {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
+    }
+
+    #{&}__img {
+      border-radius: 15px;
+      overflow: hidden;
     }
 
     #{&}__count {
@@ -952,16 +885,6 @@ footer {
       position: relative;
       border-radius: 50%;
       overflow: hidden;
-
-      img {
-        width: 44px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        margin: auto;
-      }
     }
 
     #{&}__other {
@@ -1525,22 +1448,8 @@ footer {
 
     #{&}__image {
       width: 100%;
-      position: relative;
-      padding-top: 50%;
-      padding-bottom: 50%;
       border-radius: 50%;
       overflow: hidden;
-
-      img {
-        width: 100%;
-        height: auto;
-        max-width: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-      }
     }
 
     #{&}__username {
@@ -1756,5 +1665,39 @@ footer {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+  }
+}
+
+/*img-square
+------------------------------------------------------*/
+.img-square {
+  width: 100%;
+  padding-top: 50%;
+  padding-bottom: 50%;
+  position: relative;
+
+  @at-root {
+    #{&}__height {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: -50%;
+      bottom: -50%;
+      right: -100%;
+      left: -100%;
+      margin: auto;
+    }
+
+    #{&}__width {
+      height: 100%;
+      width: auto;
+      max-width: none;
+      position: absolute;
+      top: -100%;
+      bottom: -100%;
+      right: -100%;
+      left: -100%;
+      margin: auto;
+    }
   }
 }
