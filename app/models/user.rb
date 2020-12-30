@@ -37,6 +37,20 @@ class User < ApplicationRecord
   end
 
 
+	def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = [
+        [*0..9].sample(4),
+        [*'a'..'z'].sample(4),
+        [*'A'..'Z'].sample(4),
+        ['#', '?', '!', '@', '$', '%', '^', '&', '*', '-'].sample(4),
+      ].sum([]).shuffle.join
+
+      user.name = "ゲスト様"
+      user.username = "guest"
+      user.confirmed_at = Time.now
+    end
+  end
 
   # related like
   def already_liked?(post)

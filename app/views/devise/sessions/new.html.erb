@@ -19,6 +19,7 @@
 
     <div class="actions">
       <%= f.submit 'ログイン', class:'btn btn-lg btn-primary btn-block' %>
+      <%= link_to 'ゲストログイン(閲覧用)', users_guest_sign_in_path, method: :post, class:'btn btn-lg btn-primary btn-block mb-4' %>
     </div>
 
     <div class="mt-5"><%= render 'devise/shared/links' %></div>
