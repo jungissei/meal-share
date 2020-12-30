@@ -1,16 +1,16 @@
 # Meal Share
 
-Meal Shareとは、食べ物をシェアするウェブサイトです。 [https://cook.issei-dev.work/](https://cook.issei-dev.work/)
+Meal Shareとは、美味しいものえお食べ物をシェアするウェブサイトです。 [https://cook.issei-dev.work/](https://cook.issei-dev.work/)
 
 ***DebugAccount:***
 
-[email] [issei-dev@gmail.com](mailto:issei-dev@gmail.com)<br />
-[password] bmm4/VM*UAaY
+[https://cook.issei-dev.work/users/sign_in](https://cook.issei-dev.work/users/sign_in)で「ゲストログイン(閲覧用)」ボタンリンクを押下でログイン
+
 
 ## 使用技術
 
 - Ruby 2.6.3
-- Ruby on Rails 6.0.2
+- Ruby on Rails 6.0.3
 - MySQL 5.7
 - AWS
   - VPC
@@ -25,9 +25,12 @@ Meal Shareとは、食べ物をシェアするウェブサイトです。 [http
 - 画像アップロード
   - carrierwave
   - fog
+  - mini_magick
 - 通知機能
 - ユーザー認証
   - Devise
+- 検索機能
+  - ransack
 - DB
   - mysql
 - ページネーション
@@ -49,7 +52,8 @@ Meal Shareとは、作った料理や、レストランの食べ物をシェア�
 - ユーザー登録、ログイン機能(devise)
 - 投稿機能
   - 画像投稿
-- コメントの送信
-- 記事にいいねを付ける
-- フォロー機能
+- コメント(ajax)
+- 記事にいいねを付ける(ajax)
+- フォロー機能(ajax)
 - 通知機能
+- 検索機能
