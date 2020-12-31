@@ -1,15 +1,16 @@
 <%
 unless image.blank?
-  image_url = get_uploaded_image(image, version)
-  image_obj = MiniMagick::Image.open("#{Rails.root.to_s}/public#{image_url}")
+  image = get_uploaded_image(image, version)
+  image_url = Rails.env == "production"? image : "#{Rails.root.to_s}/public#{image}"
+  image_obj = MiniMagick::Image.open(image_url)
   class_name = image_obj.width >= image_obj.height ? "img-square__width":"img-square__height"
   img_width = image_obj.width
   img_height = image_obj.height
 else
-  image_url = "nophoto.jpg"
+  image = "nophoto.jpg"
   class_name = "img-square__width"
   img_width = 600
   img_height = 600
 end
 %>
-<div class="img-square"><%= image_tag image_url, class: class_name, width: img_width, height: img_height %></div>
+<div class="img-square"><%= image_tag image, class: class_name, width: img_width, height: img_height %></div>
