@@ -1,7 +1,6 @@
 <%
 unless image.blank?
-  # image_path = get_uploaded_image(image, version)
-  image_path = image.url.to_s
+  image_path = get_uploaded_image(image, version)
   image_obj = MiniMagick::Image.open(Rails.env == "production"? image.url.to_s : "#{Rails.root.to_s}/public#{image}")
   class_name = image_obj.width >= image_obj.height ? "img-square__width":"img-square__height"
   img_width = image_obj.width
