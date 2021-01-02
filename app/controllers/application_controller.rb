@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     # Returns the value of the src attribute of
     # the img tag of the thumbnail size image.
     def thumb(image)
-      unless image.thumb.blank?
+      unless image.thumb.file.exists?
         return image.thumb.url.to_s
       end
 
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
     # Returns the value of the src attribute of
     # the img tag for a medium-sized thumbnail image.
     def medium_thumb(image)
-      unless image.thumb.blank?
+      unless image.medium_thumb.file.exists?
         return image.medium_thumb.url.to_s
       end
 
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     # Returns the value of the src attribute
     # of the img tag for a small-sized thumbnail image.
     def small_thumb(image)
-      unless image.thumb.blank?
+      unless image.small_thumb.file.exists?
         return image.small_thumb.url.to_s
       end
 
