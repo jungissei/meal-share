@@ -19,7 +19,7 @@
 
   <div class="comment-form">
     <%= f.label :content, class: 'comment-form__user' do %>
-      <%= image_tag post.user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
+      <%= render partial: 'layouts/img-square', locals: { image: current_user.image, version: "small_thumb" } %>
     <% end %>
     <div class="comment-form__area">
       <%= f.text_area :content,placeholder: 'コメントする...', class:'form-control js-comment-teatarea' %>
