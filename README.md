@@ -53,5 +53,11 @@ Meal Shareとは、作った料理や、レストランの食べ物をシェア�
 
 WordPressやEC-CUBEを中心にサイト制作を5年しております。ウェブ開発における開発者の常識的なスキルを身に着けたいと思い勉強中です。
 
-[https://qiita.com/jungissei](Qiita)
-[https://twitter.com/jungissei](Twitter)
+
+| key     |value                                        |
+| ------- | ------------------------------------------- |
+| Twitter |[@jungissei](https://twitter.com/jungissei)  |
+| Qiita   |[@jungissei](https://qiita.com/jungissei)    |
+
+
+
