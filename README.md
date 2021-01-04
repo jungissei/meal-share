@@ -40,7 +40,7 @@ Meal Shareとは、美味しいものえお食べ物をシェアするウェブ�
 
 ## AWS 構成図
 
-![download](https://user-images.githubusercontent.com/42998753/93855276-359d2e00-fcf2-11ea-87e5-22a037bb4dbf.png)
+![chart](https://user-images.githubusercontent.com/42998753/103541236-80783580-4ede-11eb-9952-22523167d337.png)
 
 ## 概要
 
