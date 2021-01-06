@@ -1,7 +1,7 @@
 <div class="post-comment post-comment-<%= comment.id %>">
   <div class="post-comment__user">
     <%= link_to user_path(comment.user) do %>
-      <%= image_tag comment.user.image? ? comment.image.to_s: 'nophoto.jpg' %>
+      <%= render partial: 'layouts/img-square', locals: { image: comment.user.image, version: "small_thumb" } %>
     <% end %>
   </div>
   <div class="post-comment__body">

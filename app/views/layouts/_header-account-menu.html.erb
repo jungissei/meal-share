@@ -2,7 +2,7 @@
   <div class="header-menu__items">
     <%= link_to user_path(current_user), class: 'header-menu__item header-menu__d-flex' do %>
       <div class="header-menu__user-col-left header-menu__user-img">
-        <%= image_tag current_user.image? ? current_user.image.to_s: 'nophoto.jpg' %>
+        <%= render partial: 'layouts/img-square', locals: { image: current_user.image, version: "medium_thumb" } %>
       </div>
       <div class="header-menu__user-col-right">
         <div class="header-menu__user-name">
