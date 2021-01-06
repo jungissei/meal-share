@@ -27,7 +27,7 @@
         </div>
       <% end %>
       <div class="post-card__act">
-        <%= link_to "https://twitter.com/share?ref_src=twsrc%5Etfw&url=#{url_for(protocol: ENV['WEB_PROTOCOL'], host: ENV['WEB_HOST'])}&text=#{post.title}&hashtags=MealShare", target:'_blank' do %>
+        <%= link_to "https://twitter.com/share?ref_src=twsrc%5Etfw&url=#{url_for(protocol: ENV['WEB_PROTOCOL'], host: ENV['WEB_HOST'], controller: :posts, action: :show, id: post.id)}&text=#{post.title}&hashtags=MealShare", target:'_blank' do %>
           <i class="fab fa-twitter"></i> Tweet
         <% end %>
       </div>
