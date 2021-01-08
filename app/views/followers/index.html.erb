@@ -1,0 +1,28 @@
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-left' %>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-8 mr-auto ml-auto">
+      <%= render partial: 'users/user', locals: { user: @user, relationship: @relationship, posts: @user.posts.status_public } %>
+        <ul class="nav-menu">
+          <li class="nav-menu__item">
+            <%= link_to 'フォロー中', user_followings_path(@user), class:'nav-menu__link' %>
+          </li>
+          <li class="nav-menu__item">
+            <%= link_to 'フォロワー',  user_followers_path(@user),class:'nav-menu__link is_active' %>
+          </li>
+        </ul>
+      <h2 class="title-secondary">フォロワー</h2>
+      <% @followers.each do |user| %>
+        <%= render partial: 'user', locals: { user: user } %>
+      <% end %>
+      <%= paginate @followers %>
+    </div>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+  <%= render partial: 'layouts/sidebar-right' %>
+<% end %>
