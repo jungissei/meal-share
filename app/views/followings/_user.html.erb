@@ -1,0 +1,11 @@
+<%= link_to user_path(user), class:'block-user shadow-sm' do %>
+  <div class="block-user__thumb">
+    <div class="block-user__thumb-img">
+      <%= render partial: 'layouts/img-square', locals: { image: user.image, version: "small_thumb" } %>
+    </div>
+  </div>
+  <div class="block-user__body">
+    <div class="block-user__name"><%= user.name %></div>
+    <div class="block-user__username">@<%= user.username %></div>
+  </div>
+<% end %>
