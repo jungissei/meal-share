@@ -1517,24 +1517,29 @@ footer {
 ------------------------------------------------------*/
 .nav-menu {
   list-style: none;
-  display: flex;
   padding-left: 0;
   padding-top: 1em;
   padding-bottom: 1em;
   margin-bottom: 1em;
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   @at-root {
     #{&}__item {
+      display: inline-block;
+
       &:not(:last-child) {
         padding-right: 1em;
       }
     }
 
     #{&}__link {
-      padding: 1em 2em;
       background-color: theme-color-level(light, 1);
       border-radius: 20px;
       font-weight: bold;
+      padding: 1em 2em;
+      display: block;
 
       &.is_active {
         color: theme-color(primary) !important;

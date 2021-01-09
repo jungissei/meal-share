@@ -10,7 +10,7 @@
       <% if user_signed_in? && current_user == @user %>
         <ul class="nav-menu">
           <li class="nav-menu__item">
-            <%= link_to user_path(@user), class:'nav-menu__link is_active' do %>
+            <%= link_to user_path(@user), class:'nav-menu__link' do %>
               <i class="fas fa-globe"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>
             <% end %>
           </li>
@@ -20,21 +20,21 @@
             <% end %>
           </li>
           <li class="nav-menu__item">
-            <%= link_to user_likes_path(@user), class:'nav-menu__link' do %>
+            <%= link_to user_likes_path(@user), class:'nav-menu__link is_active' do %>
               <i class="fas fa-thumbs-up"></i> いいねした記事
             <% end %>
           </li>
         </ul>
-        <h2 class="title-secondary"><i class="fas fa-globe text-primary"></i> <%= I18n.t('activerecord.attributes.post.statuses.public') %>記事一覧</h2>
+        <h2 class="title-secondary"><i class="fas fa-thumbs-up text-primary"></i> いいねした記事</h2>
       <% end %>
-        <div class="row">
-          <% @posts.each do |post| %>
-            <div class="col-12 col-md-6">
-              <%= render 'posts/post-card', post: post %>
-            </div>
-          <% end %>
+      <div class="row">
+      <% @posts.each do |post| %>
+        <div class="col-12 col-md-6">
+          <%= render 'posts/post-card', post: post %>
         </div>
-        <%= paginate @posts %>
+      <% end %>
+      </div>
+      <%#= paginate @posts %>
     </div>
   </div>
 </div>

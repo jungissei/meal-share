@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :followings, only: [:index]
     resources :followers, only: [:index]
     resources :privates, only: [:index]
+    resources :likes, only: [:index]
   end
 
   resources :notifications, only: :index
