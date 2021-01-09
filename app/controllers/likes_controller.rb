@@ -5,7 +5,7 @@ class LikesController < ApplicationController
   before_action :authenticate_current_user, only: [:index]
 
   def index
-    @posts = Post.status_public.joins(:likes).where(user_id: @user.id).order('likes.created_at desc').page(params[:page])
+    @posts = Post.status_public.joins(:likes).where('likes.user_id', @user.id).order('likes.created_at desc').page(params[:page])
 
     @relationship = Relationship.find_by(user_id: current_user.id, follow_id: @user)
   end
