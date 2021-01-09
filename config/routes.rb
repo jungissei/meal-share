@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :relationships, only: [:create, :destroy]
+    resources :followings, only: [:index]
+    resources :followers, only: [:index]
     resources :privates, only: [:index]
   end
 

@@ -1,22 +1,32 @@
 <div class="user-card shadow-sm">
   <div class="user-card__body">
     <div class="user-card__header">
-      <div class="user-card__image">
+      <%= link_to user_path(@user), class:'user-card__image' do %>
         <%= render partial: 'layouts/img-square', locals: { image: user.image, version: "medium_thumb" } %>
-      </div>
+      <% end %>
     </div>
     <div class="user-card__main">
       <div class="user-card__main-row">
-        <div class="user-card__count"><%= posts.count %></div>
-        <div class="user-card__count-name">投稿</div>
+        <%= link_to user_path(@user), class:'user-card__url' do %>
+          <div class="user-card__count"><%= posts.count %></div>
+          <div class="user-card__count-name">投稿</div>
+        <% end %>
       </div>
       <div class="user-card__main-row">
-        <div class="user-card__count"><%= user.followings.count %></div>
-        <div class="user-card__count-name">フォロー</div>
+        <% if user_signed_in? %>
+          <%= link_to user_followings_path(@user), class: 'user-card__url' do %>
+            <div class="user-card__count"><%= user.followings.count %></div>
+            <div class="user-card__count-name">フォロー中</div>
+          <% end %>
+        <% end %>
       </div>
       <div class="user-card__main-row">
-        <div class="user-card__count"><%= user.followers.count %></div>
-        <div class="user-card__count-name">フォロワー</div>
+        <% if user_signed_in? %>
+          <%= link_to user_followers_path(@user), class: 'user-card__url' do %>
+            <div class="user-card__count"><%= user.followers.count %></div>
+            <div class="user-card__count-name">フォロワー</div>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="user-card__footer">
